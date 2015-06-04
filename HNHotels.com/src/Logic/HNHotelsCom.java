@@ -1,0 +1,49 @@
+package Logic;
+import Interface.LoginWindow;
+/**
+ *
+ * @author Kimberly
+ */
+public class HNHotelsCom {
+    private static Global global = Global.getInstance();
+    /**
+     * @param args the command line arguments
+     */
+    
+    public static User searchUser(String ID){
+        for(User temporalUser : global.getInstance().getUsersList()){
+            if(temporalUser.getID().toLowerCase().equals(ID)){
+                return temporalUser;
+            }
+        }
+        return null;
+    }
+    public static Category searchCategory(int category){
+        for(Category categoryToSearch: global.getCategoryList()){
+            if(categoryToSearch.getCode() == category){
+                return categoryToSearch;
+            }
+        }
+        return null;
+    }
+    public static Hotel searchHotel(String name){
+        for(Hotel temporalHotel : global.getHotelsList()){
+            if(temporalHotel.getName().equals(name))
+                return temporalHotel;
+        }
+        return null;
+    }
+    
+    public static void main(String[] args) {
+         new LoginWindow().setVisible(true);
+         UserFactory factory = new UserFactory();
+         User User1 = factory.addNewUser("1234","Kimberly", "Morales","Female","kim123", "kim123", 0, 12345, "CR","colon");
+         User User2 = factory.addNewUser("12321","Vale","Morales","Female","valem", "123",1,123,"CR","dollar");
+         global.getUsersList().add(User2);
+         global.getUsersList().add(User1);
+        
+    } 
+        
+    
+    
+}
