@@ -8,11 +8,7 @@ package Interface;
 
 import Logic.*;
 import java.awt.event.KeyEvent;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Arrays;
 import javax.swing.JOptionPane;
 
 /**
@@ -351,7 +347,7 @@ public class LoginWindow extends javax.swing.JFrame {
 
     private void jTextFieldLastNameKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLastNameKeyTyped
         char c = evt.getKeyChar(); 
-        if (!((c >= 65) && (c <= 90) || (c == evt.VK_BACK_SPACE) || (c == evt.VK_DELETE))) { 
+        if (!((c >= 65) && (c <= 90)||((c>=97)&&(c<=122)) || (c == evt.VK_BACK_SPACE) || (c == evt.VK_DELETE))) { 
         getToolkit().beep(); 
         evt.consume(); 
         }
@@ -365,35 +361,63 @@ public class LoginWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldEmailKeyTyped
 
+    private boolean checkPassword(char[] password){
+        for(char passwordNumber : password){
+            if(passwordNumber>='0' && passwordNumber <='9')
+                return true;
+        }
+        return false;
+    }
+    private String convertChar(char[] password){
+        String result ="";
+        for(char temporalchar: password){
+            result += temporalchar;
+        }
+        return result;
+    }
+    
     private void jButtonCheckinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCheckinActionPerformed
-       if(jPasswordFieldCheckin.getText() != ""||jTextFieldEmail.getText() != ""||
-        jTextFieldLastName.getText() != ""|| jTextFieldName.getText() !=""|| 
-        jPasswordFieldConfirm.getText() != ""|| jTextFieldEmailLogin.getText() !=""){
-           
-           if(jTextFieldPassword.getText().){
-               
-               
-               UserFactory newUserFactory = new UserFactory();
-               Object getGenre= jComboBoxFemaleMale.getSelectedItem();
-               String genre= String.valueOf(getGenre);
-               
-            Object e = jComboBoxCurrency.getSelectedItem(); 
-            String currency = String.valueOf(e);
-            User newUser = newUserFactory.addNewUser(jTextFieldID.getText(),jTextFieldName.getText(),
-            jTextFieldLastName.getText(),genre,jTextFieldEmail.getText(),jTextFieldPassword.getText(),
-            jComboBoxUserType.getSelectedIndex(),Integer.parseInt(jTextFieldPhoneNumber.getText()),
-            jTextFieldCountry.getText(), currency);
-            global.addNewUser(newUser);
-            global.setUserCount(1);
-               
-           }
-           else{
-               JOptionPane.showMessageDialog(null,"Password don't match");
-           }
-           
-       }
-       else{
-           JOptionPane.showMessageDialog(null,"Missing some data.");
+       if((jPasswordFieldCheckin.getPassword().length>0 )&& (!jTextFieldEmail.getText().equals(""))&&
+        (!jTextFieldLastName.getText().equals("")) && (!jTextFieldName.getText().equals(""))&&
+        (jPasswordFieldConfirm.getPassword().length>0 )&& (!jTextFieldEmail.getText().equals(""))){ 
+            if(jPasswordFieldCheckin.getPassword().length>=6 && jPasswordFieldCheckin.getPassword().length<20){
+                if(checkPassword(jPasswordFieldCheckin.getPassword())){
+                    if(Arrays.equals(jPasswordFieldCheckin.getPassword(),jPasswordFieldConfirm.getPassword())){
+                        UserFactory newUserFactory = new UserFactory();
+                        Object getGenre= jComboBoxFemaleMale.getSelectedItem();
+                        String genre= String.valueOf(getGenre);
+                        Object e = jComboBoxCurrency.getSelectedItem(); 
+                        String currency = String.valueOf(e);
+                        User newUser = newUserFactory.addNewUser(jTextFieldID.getText(),jTextFieldName.getText(),
+                        jTextFieldLastName.getText(),genre,jTextFieldEmail.getText(),convertChar(jPasswordFieldCheckin.getPassword()),
+                        jComboBoxUserType.getSelectedIndex(),Integer.parseInt(jTextFieldPhoneNumber.getText()),
+                        jTextFieldCountry.getText(), currency);
+                        global.addNewUser(newUser);
+                        global.setUserCount(1);
+                        jPasswordFieldCheckin.setText("");
+                        jTextFieldEmail.setText("");
+                        jTextFieldCountry.setText("");
+                        jTextFieldID.setText("");
+                        jTextFieldLastName.setText("");
+                        jTextFieldName.setText("");
+                        jTextFieldPhoneNumber.setText("");
+                        jPasswordFieldConfirm.setText("");
+                            
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(this,"Password doesn't match.");
+                    }
+                }
+                else{
+                    JOptionPane.showMessageDialog(this,"The password must be at least one number.");
+                }
+            } 
+            else{
+                JOptionPane.showMessageDialog(this,"The password must be at least 6 characters and maximum 20.");
+            }  
+        }
+        else{
+           JOptionPane.showMessageDialog(this,"Missing some data.");
        }
     }//GEN-LAST:event_jButtonCheckinActionPerformed
 
@@ -407,11 +431,11 @@ public class LoginWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldEmailLoginActionPerformed
 
     private void jButtonLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLoginActionPerformed
-        if(jTextFieldEmailLogin.getText()!= ""||jTextFieldPasswordLogin.getText()!=""){
+        if(!(jTextFieldEmailLogin.getText().equals("")||jPasswordFieldLogin.getPassword().length==0)){
             
             for(User temporalUser : global.getUsersList()){
                 if(temporalUser.getEmail().equals(jTextFieldEmailLogin.getText()) &&
-                temporalUser.getPassword().equals(jTextFieldPasswordLogin.getText())){
+                temporalUser.getPassword().equals(convertChar(jPasswordFieldLogin.getPassword()))){
                     if(temporalUser instanceof Admin){
                         new AdminWindow().setVisible(true);
                     }

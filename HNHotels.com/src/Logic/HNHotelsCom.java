@@ -36,6 +36,10 @@ public class HNHotelsCom {
     
     public static void main(String[] args) {
          new LoginWindow().setVisible(true);
+         Category category = new Category(123,345,"firstCategory");
+         Hotel newHotel = new Hotel("HotelFlorencia","florencia","CR",23456, 23546,
+         "hotel", 1000, 3, 6, "nothing", 4, category);
+         global.getHotelsList().add(newHotel);
          UserFactory factory = new UserFactory();
          User User1 = factory.addNewUser("1234","Kimberly", "Morales","Female","kim123", "kim123", 0, 12345, "CR","colon");
          User User2 = factory.addNewUser("12321","Vale","Morales","Female","valem", "123",1,123,"CR","dollar");

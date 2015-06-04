@@ -79,6 +79,22 @@ public class Global {
     public void addHotel(Hotel hotel){
         instance.hotelsList.add(hotel);
     }
+
+    public ArrayList<Reserve> getCancelReservationsList() {
+        return cancelReservationsList;
+    }
+
+    public void setCancelReservationsList(ArrayList<Reserve> cancelReservationsList) {
+        this.cancelReservationsList = cancelReservationsList;
+    }
+
+    public ArrayList<Reserve> getCompleteReservationList() {
+        return completeReservationList;
+    }
+
+    public void setCompleteReservationList(ArrayList<Reserve> completeReservationList) {
+        this.completeReservationList = completeReservationList;
+    }
     
 
    

@@ -43,7 +43,13 @@ public class Hotel {
         this.requirements = requirements;
         this.starsNumber = starsNumber;
         this.hotelCategory = category;
+        this.images = new ArrayList();
         this.kindOfRoomList = new ArrayList();
+        this.reserveList = new ArrayList();
+        this.touristAtractions = new ArrayList();
+        this.reserveList = new ArrayList();
+        this.seasons = new ArrayList();
+        this.roomList = new ArrayList();
     }
 
     public String getName() {
@@ -200,7 +206,27 @@ public class Hotel {
     public void setKindOfRoomList(ArrayList<KindOfRoom> kindOfRoomList) {
         this.kindOfRoomList = kindOfRoomList;
     }
-   
+    public void addKindRoom(KindOfRoom newRoom){
+      if(this.kindOfRoomList.size() > 0){
+            //It is first.
+            if(kindOfRoomList.get(0).getFloor() >= newRoom.getFloor())
+                this.kindOfRoomList.add(0, newRoom);
+            //It is the last.
+            else if(this.kindOfRoomList.get(this.kindOfRoomList.size()-1).getFloor()<=newRoom.getFloor())
+                this.kindOfRoomList.add(newRoom);
+            else{
+                for(int i = 1;i<this.kindOfRoomList.size();i++){
+                    if(this.kindOfRoomList.get(i).getFloor()> newRoom.getFloor()){
+                        this.kindOfRoomList.add(i,newRoom);
+                        break;
+                    }
+                }
+            }
+        }
+        
+        else
+            this.kindOfRoomList.add(newRoom);
+    }
     
     
     
