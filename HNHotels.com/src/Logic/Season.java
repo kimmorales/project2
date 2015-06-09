@@ -16,7 +16,7 @@ public class Season {
     private ArrayList<Room> seasonRoomList;
     private ArrayList<Price> seasonPriceList;
 
-    public Season(String code, String name, int stays, GregorianCalendar startDate, GregorianCalendar endDate) {
+    public Season(String code, String name, GregorianCalendar startDate, GregorianCalendar endDate) {
         this.code = code;
         this.name = name;
         this.stays = 0;

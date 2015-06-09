@@ -1,6 +1,7 @@
 package Logic;
 
 import java.util.ArrayList;
+import javafx.scene.input.TouchPoint;
 import javax.swing.ImageIcon;
 
 /**
@@ -227,8 +228,16 @@ public class Hotel {
         else
             this.kindOfRoomList.add(newRoom);
     }
+    public void addNewRoom(Room room){
+        this.roomList.add(room);
+    }
     
-    
+    public void addAtraction(TouristAttraction atraction){
+        this.touristAtractions.add(atraction);
+    }
+    public void addHotelServive(Service service){
+        this.services.add(service);
+    }
     
     
     

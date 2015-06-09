@@ -1,5 +1,8 @@
 package Logic;
 import Interface.LoginWindow;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 /**
  *
  * @author Kimberly
@@ -47,6 +50,12 @@ public class HNHotelsCom {
          global.getUsersList().add(User1);
         
     } 
+    public static GregorianCalendar createDate(int day, int month){
+        GregorianCalendar calendario = new GregorianCalendar();
+        calendario.set(Calendar.DAY_OF_MONTH,day);
+        calendario.set(Calendar.MONTH,month);
+        return calendario;
+    }
         
     
     
