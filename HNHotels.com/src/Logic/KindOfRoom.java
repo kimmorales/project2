@@ -101,7 +101,9 @@ public class KindOfRoom {
     public void setRoomsList(ArrayList<Room> roomsList) {
         this.roomsList = roomsList;
     }
-    
+    public void addRoom(Room room){
+        this.roomsList.add(room);
+    }
     
     
     

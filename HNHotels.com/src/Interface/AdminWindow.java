@@ -52,6 +52,7 @@ public class AdminWindow extends javax.swing.JFrame {
         seaview = new javax.swing.ButtonGroup();
         allIncluded = new javax.swing.ButtonGroup();
         somokePermission = new javax.swing.ButtonGroup();
+        jButton1 = new javax.swing.JButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -125,6 +126,9 @@ public class AdminWindow extends javax.swing.JFrame {
         jButtonSaveRoom = new javax.swing.JButton();
         jLabel60 = new javax.swing.JLabel();
         jComboBoxHotelList = new javax.swing.JComboBox();
+        jLabel25 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jListTypeOfRooms = new javax.swing.JList();
         jPanel3 = new javax.swing.JPanel();
         jLabel35 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
@@ -140,6 +144,7 @@ public class AdminWindow extends javax.swing.JFrame {
         jButtonSaveService = new javax.swing.JButton();
         jLabel41 = new javax.swing.JLabel();
         jComboBoxComboSelectHotel = new javax.swing.JComboBox();
+        jSeparator4 = new javax.swing.JSeparator();
         jPanel4 = new javax.swing.JPanel();
         jLabel44 = new javax.swing.JLabel();
         jLabel45 = new javax.swing.JLabel();
@@ -177,6 +182,8 @@ public class AdminWindow extends javax.swing.JFrame {
         jButton5 = new javax.swing.JButton();
         jComboBoxHotelsForImages = new javax.swing.JComboBox();
         jLabel61 = new javax.swing.JLabel();
+
+        jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -352,18 +359,6 @@ public class AdminWindow extends javax.swing.JFrame {
                                 .addGap(212, 212, 212))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel32)
-                                            .addComponent(jLabel33)
-                                            .addComponent(jLabel34))
-                                        .addGap(55, 55, 55)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextFieldCategoryCode)
-                                            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
-                                            .addComponent(jSpinnerCategoryTax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jButtonSaveCategory, javax.swing.GroupLayout.Alignment.TRAILING)))
                                     .addComponent(jLabel28)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
@@ -375,6 +370,19 @@ public class AdminWindow extends javax.swing.JFrame {
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jSeparator1))
                 .addGap(228, 228, 228))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel32)
+                    .addComponent(jLabel33)
+                    .addComponent(jLabel34))
+                .addGap(55, 55, 55)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextFieldCategoryCode)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerCategoryTax, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSaveCategory, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -447,7 +455,7 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel31)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 121, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel34)
                     .addComponent(jTextFieldCategoryCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -461,7 +469,7 @@ public class AdminWindow extends javax.swing.JFrame {
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSaveCategory)
-                .addContainerGap())
+                .addContainerGap(148, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Add hotels", jPanel1);
@@ -484,7 +492,7 @@ public class AdminWindow extends javax.swing.JFrame {
 
         jLabel21.setText("Somoke permission:");
 
-        jSpinnerFloor.setModel(new javax.swing.SpinnerNumberModel());
+        jSpinnerFloor.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         jSpinnerMaxGuest.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
@@ -518,8 +526,10 @@ public class AdminWindow extends javax.swing.JFrame {
         allIncluded.add(jRadioButtonAllIncludedNo);
         jRadioButtonAllIncludedNo.setText("No");
 
+        somokePermission.add(jRadioButtonSmokeYes);
         jRadioButtonSmokeYes.setText("Yes");
 
+        somokePermission.add(jRadioButtonSmokeNo);
         jRadioButtonSmokeNo.setText("No");
 
         jLabel22.setText("Room:");
@@ -546,6 +556,16 @@ public class AdminWindow extends javax.swing.JFrame {
 
         jLabel60.setText("Hotel:");
 
+        jComboBoxHotelList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxHotelListActionPerformed(evt);
+            }
+        });
+
+        jLabel25.setText("Select type of room:");
+
+        jScrollPane3.setViewportView(jListTypeOfRooms);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -553,11 +573,6 @@ public class AdminWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel60)
-                        .addGap(116, 116, 116)
-                        .addComponent(jComboBoxHotelList, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -566,11 +581,12 @@ public class AdminWindow extends javax.swing.JFrame {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
                                 .addComponent(jLabel24)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSpinnerIDRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonSaveRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jButtonSaveRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(91, 91, 91))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -609,7 +625,15 @@ public class AdminWindow extends javax.swing.JFrame {
                                         .addComponent(jSpinnerMaxGuest, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addComponent(jSpinnerRoomSize, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jButtonSaveTypeRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel60)
+                                .addGap(116, 116, 116)
+                                .addComponent(jComboBoxHotelList, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel25))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -617,66 +641,74 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel13)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel60)
-                    .addComponent(jComboBoxHotelList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel15)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel60)
+                            .addComponent(jComboBoxHotelList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel16)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(jLabel16)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel17)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel18)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel20)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel21))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jSpinnerFloor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14))
+                                .addGap(5, 5, 5)
+                                .addComponent(jTextFieldBedType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8)
+                                .addComponent(jSpinnerMaxGuest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinnerRoomSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButtonYesLoungeTerrace)
+                                    .addComponent(jRadioButtonNoLoungeTerrace))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButtonYesSeaview)
+                                    .addComponent(jRadioButtonNoSeaview))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButtonAllIncludedYes)
+                                    .addComponent(jRadioButtonAllIncludedNo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jRadioButtonSmokeYes)
+                                    .addComponent(jRadioButtonSmokeNo))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel17)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel18)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel20)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel21))
+                        .addComponent(jButtonSaveTypeRoom)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addComponent(jLabel25)
+                        .addGap(94, 94, 94))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jSpinnerFloor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14))
-                        .addGap(5, 5, 5)
-                        .addComponent(jTextFieldBedType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)
-                        .addComponent(jSpinnerMaxGuest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jSpinnerRoomSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButtonYesLoungeTerrace)
-                            .addComponent(jRadioButtonNoLoungeTerrace))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButtonYesSeaview)
-                            .addComponent(jRadioButtonNoSeaview))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButtonAllIncludedYes)
-                            .addComponent(jRadioButtonAllIncludedNo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jRadioButtonSmokeYes)
-                            .addComponent(jRadioButtonSmokeNo))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonSaveTypeRoom)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel22)
                 .addGap(8, 8, 8)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel23)
                     .addComponent(jSpinnerIDRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(3, 3, 3)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel24))
-                .addGap(27, 27, 27)
+                .addGap(12, 12, 12)
+                .addComponent(jLabel24)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
                 .addComponent(jButtonSaveRoom)
-                .addContainerGap(318, Short.MAX_VALUE))
+                .addGap(185, 185, 185))
         );
 
         jTabbedPane4.addTab("Add rooms", jPanel2);
@@ -723,14 +755,10 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel41)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel35, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
                                 .addComponent(jLabel38)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -749,14 +777,19 @@ public class AdminWindow extends javax.swing.JFrame {
                                             .addComponent(jTextFieldIDTouristAttraction)
                                             .addComponent(jTextFieldAttractionName)
                                             .addComponent(jTextFieldServiceCode)
-                                            .addComponent(jTextFieldServiceName, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
-                                            .addComponent(jComboBoxComboSelectHotel, 0, 170, Short.MAX_VALUE)))
+                                            .addComponent(jTextFieldServiceName, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                            .addComponent(jComboBoxComboSelectHotel, 0, 176, Short.MAX_VALUE)))
                                     .addGroup(jPanel3Layout.createSequentialGroup()
                                         .addGap(156, 156, 156)
                                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jButtonSaveTouristAttraction)
                                             .addComponent(jButtonSaveService))))))
-                        .addGap(44, 44, 44))))
+                        .addGap(44, 44, 44))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel41)
+                            .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -792,7 +825,9 @@ public class AdminWindow extends javax.swing.JFrame {
                             .addComponent(jTextFieldServiceName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(jButtonSaveService)))
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addGap(22, 22, 22)
+                .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(429, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Attractions-Services", jPanel3);
@@ -845,6 +880,11 @@ public class AdminWindow extends javax.swing.JFrame {
         jLabel56.setText("Currency:");
 
         jButtonSavePrice.setText("Save");
+        jButtonSavePrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSavePriceActionPerformed(evt);
+            }
+        });
 
         jLabel57.setText("Season:");
 
@@ -1015,9 +1055,9 @@ public class AdminWindow extends javax.swing.JFrame {
                     .addComponent(jLabel61))
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
                         .addComponent(jLabel58)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                         .addComponent(jComboBoxTypeOfRoomSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel59)
@@ -1068,24 +1108,26 @@ public class AdminWindow extends javax.swing.JFrame {
         int year = getYear.hashCode();
         Category hotelCategory = HNHotelsCom.searchCategory(Integer.parseInt(jTextFieldCategoryCode.getText()));
         if(!(jTextFieldHotelName.getText().equals("")||jTextFielHoteldAdress.getText().equals("")||
-            jTextFieldHotelCountry.getText().equals("")||jTextFieldHotelPhoneNumber.getText().equals("")||
-            jTextPaneHotelRequirements.getText().equals(""))){
-            Hotel newHotel = new Hotel(jTextFieldHotelName.getText(),jTextFielHoteldAdress.getText(),
-            jTextFieldHotelCountry.getText(),Integer.parseInt(jTextFieldHotelPhoneNumber.getText()),
-            year, jTextFieldTypeOFLodgin.getText(),(int)jSpinnerHotelSize.getValue(),(int)jSpinnerCheckinHour.getValue()
-            ,(int)jSpinnerCheckOutHour.getValue(), jTextPaneHotelRequirements.getText(),(int)jSpinnerStarsNumber.getValue()
-            ,hotelCategory);
-            Global.getInstance().addHotel(newHotel);
-            jTextFielHoteldAdress.setText("");
-            jTextFieldHotelCountry.setText("");
-            jTextFieldHotelName.setText("");
-            jTextFieldHotelPhoneNumber.setText("");
-            jTextPaneHotelRequirements.setText("");
-            jTextFieldTypeOFLodgin.setText("");
-            jSpinnerHotelSize.setValue(0);
-            jSpinnerCheckOutHour.setValue(0);
-            jSpinnerCheckinHour.setValue(0);
-            jSpinnerStarsNumber.setValue(0);
+        jTextFieldHotelCountry.getText().equals("")||jTextFieldHotelPhoneNumber.getText().equals("")||
+        jTextPaneHotelRequirements.getText().equals(""))||(jTextFieldTypeOFLodgin.getText().equals(""))){
+                 Hotel newHotel = new Hotel(jTextFieldHotelName.getText(),jTextFielHoteldAdress.getText(),
+                jTextFieldHotelCountry.getText(),Integer.parseInt(jTextFieldHotelPhoneNumber.getText()),
+                year, jTextFieldTypeOFLodgin.getText(),(int)jSpinnerHotelSize.getValue(),(int)jSpinnerCheckinHour.getValue()
+                ,(int)jSpinnerCheckOutHour.getValue(), jTextPaneHotelRequirements.getText(),(int)jSpinnerStarsNumber.getValue()
+                ,hotelCategory);
+                Global.getInstance().addHotel(newHotel);
+                JOptionPane.showMessageDialog(this,"Saved successfully");
+                jTextFielHoteldAdress.setText("");
+                jTextFieldHotelCountry.setText("");
+                jTextFieldHotelName.setText("");
+                jTextFieldHotelPhoneNumber.setText("");
+                jTextPaneHotelRequirements.setText("");
+                jTextFieldTypeOFLodgin.setText("");
+                jSpinnerHotelSize.setValue(0);
+                jSpinnerCheckOutHour.setValue(0);
+                jSpinnerCheckinHour.setValue(0);
+                jSpinnerStarsNumber.setValue(0);
+                
                     
        }
         else
@@ -1178,7 +1220,7 @@ public class AdminWindow extends javax.swing.JFrame {
         Hotel hotelToSearch = HNHotelsCom.searchHotel(hotel.toString()); 
         if(!jTextPaneDescriptionRoom.getText().equals("")){
             Room newRoom = new Room((int)jSpinnerIDRoom.getValue(),jTextPaneDescriptionRoom.getText());
-            hotelToSearch.addNewRoom(newRoom);
+            hotelToSearch.getKindOfRoomList().get(jListTypeOfRooms.getSelectedIndex()).addRoom(newRoom);
         }
         jTextPaneDescriptionRoom.setText("");
         jSpinnerIDRoom.setValue(0);
@@ -1202,7 +1244,7 @@ public class AdminWindow extends javax.swing.JFrame {
     jRadioButtonYesSeaview.setSelected(false);
     jRadioButtonSmokeYes.setSelected(false);
     jRadioButtonYesLoungeTerrace.setSelected(false);
-      
+    chargeJlistKindOfRoom(hotel);
        
     }//GEN-LAST:event_jButtonSaveTypeRoomActionPerformed
 
@@ -1214,7 +1256,8 @@ public class AdminWindow extends javax.swing.JFrame {
         chargeComboWithHotels(jComboBoxComboSelectHotel);
         chargeComboWithHotels(jComboBoxHotelList);
         chargeComboWithHotels(jComboBoxHotelsForImages);
-        
+        Hotel hotel = searchHotelCombo(jComboBoxComboSelectHotel);
+        chargeJlistKindOfRoom(hotel);
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBoxComboSelectHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComboSelectHotelActionPerformed
@@ -1261,7 +1304,28 @@ public class AdminWindow extends javax.swing.JFrame {
         Season newSeason = new Season(jTextFieldSeasonCode.getText(),jTextFieldSeasonName.getText(),
         HNHotelsCom.createDate((int)jSpinnerDayStartSeason.getValue(),(int)jSpinnerMonthStartSeason.getValue()),
         HNHotelsCom.createDate((int)jSpinnerDayEndSeason.getValue(),(int)jSpinnerEndMonthSeason.getValue()));
+        Hotel hotel = searchHotelCombo(jComboBoxHotelList);
+        hotel.registerSeason(newSeason);
     }//GEN-LAST:event_jButtonSaveSeasonActionPerformed
+
+    private void chargeJlistKindOfRoom(Hotel hotel){
+        DefaultListModel model = new DefaultListModel();
+        for(KindOfRoom temporalKindOfRoom : hotel.getKindOfRoomList()){
+                model.addElement(temporalKindOfRoom.getFloor());  
+            }
+            jListTypeOfRooms.setModel(model);
+    }
+    
+    private void jComboBoxHotelListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHotelListActionPerformed
+        if(jComboBoxHotelList.getSelectedItem() != null){
+            Hotel hotel = global.getHotelsList().get(jComboBoxHotelList.getSelectedIndex()); 
+            chargeJlistKindOfRoom(hotel);
+        }
+    }//GEN-LAST:event_jComboBoxHotelListActionPerformed
+
+    private void jButtonSavePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavePriceActionPerformed
+        
+    }//GEN-LAST:event_jButtonSavePriceActionPerformed
 
     public void chargeComboYear(){
         int anno = 2015;
@@ -1314,6 +1378,7 @@ public class AdminWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup allIncluded;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1350,6 +1415,7 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1389,6 +1455,7 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JList jListTypeOfRooms;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -1403,9 +1470,11 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButtonYesSeaview;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSpinner jSpinnerCategoryTax;
     private javax.swing.JSpinner jSpinnerCheckOutHour;
     private javax.swing.JSpinner jSpinnerCheckinHour;

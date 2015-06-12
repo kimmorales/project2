@@ -13,7 +13,7 @@ public class Season {
     private int stays;
     private GregorianCalendar startDate;
     private GregorianCalendar endDate;
-    private ArrayList<Room> seasonRoomList;
+    private ArrayList<KindOfRoom> seasonRoomList;
     private ArrayList<Price> seasonPriceList;
 
     public Season(String code, String name, GregorianCalendar startDate, GregorianCalendar endDate) {
@@ -66,11 +66,11 @@ public class Season {
         this.endDate = endDate;
     }
 
-    public ArrayList<Room> getSeasonRoomList() {
+    public ArrayList<KindOfRoom> getSeasonRoomList() {
         return seasonRoomList;
     }
 
-    public void setSeasonRoomList(ArrayList<Room> seasonRoomList) {
+    public void setSeasonRoomList(ArrayList<KindOfRoom> seasonRoomList) {
         this.seasonRoomList = seasonRoomList;
     }
 

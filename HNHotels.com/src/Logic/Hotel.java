@@ -239,6 +239,9 @@ public class Hotel {
         this.services.add(service);
     }
     
+    public void registerSeason(Season season){
+        this.seasons.add(season);
+    }
     
     
 }
