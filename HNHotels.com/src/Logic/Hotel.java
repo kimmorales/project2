@@ -1,6 +1,7 @@
 package Logic;
 
 import java.util.ArrayList;
+import java.util.logging.Logger;
 import javafx.scene.input.TouchPoint;
 import javax.swing.ImageIcon;
 
@@ -10,7 +11,7 @@ import javax.swing.ImageIcon;
  */
 public class Hotel {
     private String name;
-    private String adress;
+    private String address;
     private String country;
     private int phoneNumber;
     private int yearBuilt;
@@ -33,7 +34,7 @@ public class Hotel {
             String typeOfLodging, int hotelSize, int checkInHour, int checkOuyHour, String requirements,
             int starsNumber,Category category) {
         this.name = name;
-        this.adress = adress;
+        this.address = adress;
         this.country = country;
         this.phoneNumber = phoneNumber;
         this.yearBuilt = yearBuilt;
@@ -61,12 +62,12 @@ public class Hotel {
         this.name = name;
     }
 
-    public String getAdress() {
-        return adress;
+    public String getAddress() {
+        return address;
     }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public String getCountry() {
@@ -168,7 +169,7 @@ public class Hotel {
     public ArrayList<ImageIcon> getImages() {
         return images;
     }
-
+    
     public void setImages(ArrayList<ImageIcon> images) {
         this.images = images;
     }

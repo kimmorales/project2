@@ -6,19 +6,26 @@
 
 package Interface;
 
+import Logic.Global;
+import Logic.HNHotelsCom;
+import Logic.Hotel;
+import java.awt.event.KeyEvent;
+import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextPane;
+
 /**
  *
  * @author Kimberly
  */
 public class CustomerWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CustomerWindow
-     */
+    Global global = Global.getInstance();
     public CustomerWindow() {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
+        
     }
 
     /**
@@ -30,50 +37,269 @@ public class CustomerWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jComboBoxSearchEspecificHotel = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jListHotelsSearchs = new javax.swing.JList();
+        jSpinnerHotelNumberStars = new javax.swing.JSpinner();
+        jButtonSearchHotels = new javax.swing.JButton();
+        jTextFieldLocationToSearch = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jTextFieldTypeLodgingHotel = new javax.swing.JTextField();
+        jButtonCancel = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
+
+        jLabel1.setText("Search hotels:");
+
+        jComboBoxSearchEspecificHotel.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Number of stars", "Location", "Type of lodging" }));
+        jComboBoxSearchEspecificHotel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSearchEspecificHotelActionPerformed(evt);
+            }
+        });
+
+        jListHotelsSearchs.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jListHotelsSearchsMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jListHotelsSearchs);
+
+        jSpinnerHotelNumberStars.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
+        jSpinnerHotelNumberStars.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jSpinnerHotelNumberStarsMouseClicked(evt);
+            }
+        });
+
+        jButtonSearchHotels.setText("Search");
+        jButtonSearchHotels.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSearchHotelsActionPerformed(evt);
+            }
+        });
+
+        jTextFieldLocationToSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldLocationToSearchKeyTyped(evt);
+            }
+        });
+
+        jLabel2.setText("Adress:");
+
+        jLabel3.setText("Type of lodging:");
+
+        jButtonCancel.setText("Cancel");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Reserve hotel");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton2.setText("Edit profile");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextFieldLocationToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jTextFieldTypeLodgingHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jComboBoxSearchEspecificHotel, javax.swing.GroupLayout.PREFERRED_SIZE, 192, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton1)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonSearchHotels)
+                            .addComponent(jSpinnerHotelNumberStars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(47, 47, 47))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 546, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel1))
+                    .addComponent(jButton2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxSearchEspecificHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldLocationToSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jSpinnerHotelNumberStars, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel3)
+                .addGap(9, 9, 9)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextFieldTypeLodgingHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSearchHotels))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(18, 18, 18)
+                .addComponent(jButtonCancel)
+                .addGap(43, 43, 43))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CustomerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CustomerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CustomerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CustomerWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    
+    private void jComboBoxSearchEspecificHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSearchEspecificHotelActionPerformed
+        chargeAllHotelOnJlist();
+        if(jComboBoxSearchEspecificHotel.getSelectedIndex()==0){
+                jSpinnerHotelNumberStars.setEnabled(true);
         }
-        //</editor-fold>
+        if(jComboBoxSearchEspecificHotel.getSelectedIndex()==1){
+            jTextFieldLocationToSearch.setEnabled(true);
+        }
+        if(jComboBoxSearchEspecificHotel.getSelectedIndex()==2){
+            jTextFieldTypeLodgingHotel.setEnabled(true);
+        }
+        
+    }//GEN-LAST:event_jComboBoxSearchEspecificHotelActionPerformed
+    private void chargeAllHotelOnJlist(){
+        DefaultListModel model = new DefaultListModel();
+        for(Hotel temporalHotel : global.getHotelsList()){
+                model.addElement(temporalHotel.getName());  
+            }
+            jListHotelsSearchs.setModel(model);
+    }
+    private void chargeHotelForStars(int starsNumber){
+        if(starsNumber !=0){
+        for(Hotel temporalHotel : global.getHotelsList()){
+             if(temporalHotel.getStarsNumber() == starsNumber){
+                DefaultListModel modelStars = new DefaultListModel();
+                modelStars.addElement(temporalHotel.getName()+"- "+"Stars: "+ temporalHotel.getStarsNumber());
+                jListHotelsSearchs.setModel(modelStars);
+            }       
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"There aren't hotels with the number of stars required.\n" +
+        "Try a different search.");
+        }
+        
+    }
+    
+    private void chargeHotelForLocation(String location){
+        for(Hotel temporalHotel : global.getHotelsList()){
+            if(temporalHotel.getAddress().toLowerCase().contains(location.toLowerCase())){
+                DefaultListModel model = new DefaultListModel();
+                model.addElement(temporalHotel.getName()+"Location- "+ temporalHotel.getAddress());
+                jListHotelsSearchs.setModel(model); 
+            }
+        }
+    }
+    private void chargeHotelsTypeLodging(String lodging){
+         for(Hotel temporalHotel : global.getHotelsList()){
+            if(temporalHotel.getTypeOfLodging().toLowerCase().contains(lodging.toLowerCase())){
+                DefaultListModel model = new DefaultListModel();
+                model.addElement(temporalHotel.getName());
+                jListHotelsSearchs.setModel(model); 
+            }
+        }
+    }
+    
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        chargeAllHotelOnJlist();
+        jSpinnerHotelNumberStars.setEnabled(false);
+        jTextFieldLocationToSearch.setEnabled(false);
+        jTextFieldTypeLodgingHotel.setEnabled(false);
+    }//GEN-LAST:event_formWindowOpened
 
-        /* Create and display the form */
+    private void jSpinnerHotelNumberStarsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSpinnerHotelNumberStarsMouseClicked
+        
+    }//GEN-LAST:event_jSpinnerHotelNumberStarsMouseClicked
+
+    private void jButtonSearchHotelsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSearchHotelsActionPerformed
+        if(jComboBoxSearchEspecificHotel.getSelectedItem()!= null){
+        if((int)jSpinnerHotelNumberStars.getValue()>0 && (int)jSpinnerHotelNumberStars.getValue()<5){
+              int stars = (int)jSpinnerHotelNumberStars.getValue();
+              chargeHotelForStars(stars);
+              jSpinnerHotelNumberStars.setValue(0);
+              jTextFieldLocationToSearch.setEnabled(false);
+              jTextFieldTypeLodgingHotel.setEnabled(false);
+        }
+        if(!(jTextFieldLocationToSearch.getText().equals(""))){
+            chargeHotelForLocation(jTextFieldLocationToSearch.getText());
+            jTextFieldLocationToSearch.setText("");
+            jSpinnerHotelNumberStars.setEnabled(false);
+            jTextFieldTypeLodgingHotel.setEnabled(false);
+        }
+        if(!(jTextFieldTypeLodgingHotel.equals(""))){
+            chargeHotelsTypeLodging(jTextFieldTypeLodgingHotel.getText());
+            jTextFieldTypeLodgingHotel.setText("");
+            jSpinnerHotelNumberStars.setEnabled(false);
+            jTextFieldLocationToSearch.setEnabled(false);
+        }
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "You don't select data required, please type the correct data !");
+        }
+        
+        
+    }//GEN-LAST:event_jButtonSearchHotelsActionPerformed
+
+    private void jTextFieldLocationToSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldLocationToSearchKeyTyped
+       if(evt.getKeyChar() == (char)KeyEvent.VK_SPACE) evt.consume();
+    }//GEN-LAST:event_jTextFieldLocationToSearchKeyTyped
+
+    private void jListHotelsSearchsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListHotelsSearchsMouseClicked
+        if(jListHotelsSearchs.getSelectedIndex() != -1){
+            if(evt.getClickCount() == 2){
+                this.setEnabled(false);
+                Hotel hotelSearch = global.getHotelsList().get(jListHotelsSearchs.getSelectedIndex());
+                hotelInformationWindow info = new hotelInformationWindow(this,hotelSearch);
+                info.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_jListHotelsSearchsMouseClicked
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+    
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public static void main(String args[]) {
+  
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CustomerWindow().setVisible(true);
@@ -82,5 +308,18 @@ public class CustomerWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonSearchHotels;
+    private javax.swing.JComboBox jComboBoxSearchEspecificHotel;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JList jListHotelsSearchs;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSpinner jSpinnerHotelNumberStars;
+    private javax.swing.JTextField jTextFieldLocationToSearch;
+    private javax.swing.JTextField jTextFieldTypeLodgingHotel;
     // End of variables declaration//GEN-END:variables
 }

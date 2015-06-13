@@ -97,7 +97,7 @@
                                                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                                           <Component id="jTextFieldTypeOFLodgin" alignment="1" pref="134" max="32767" attributes="0"/>
                                                           <Component id="jTextFieldHotelName" alignment="0" max="32767" attributes="0"/>
-                                                          <Component id="jTextFielHoteldAdress" alignment="0" max="32767" attributes="0"/>
+                                                          <Component id="jTextFielHoteldAddress" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="jTextFieldHotelCountry" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="jTextFieldHotelPhoneNumber" alignment="0" max="32767" attributes="0"/>
                                                           <Component id="jComboBoxYearOfBuilt" alignment="0" pref="134" max="32767" attributes="0"/>
@@ -168,7 +168,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFielHoteldAdress" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFielHoteldAddress" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -273,7 +273,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel2">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Adress:"/>
+                <Property name="text" type="java.lang.String" value="Address:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
@@ -326,9 +326,9 @@
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFieldHotelNameKeyTyped"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFielHoteldAdress">
+            <Component class="javax.swing.JTextField" name="jTextFielHoteldAddress">
               <Events>
-                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFielHoteldAdressKeyTyped"/>
+                <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextFielHoteldAddressKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldHotelCountry">
@@ -592,7 +592,6 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel13" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -651,7 +650,7 @@
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jButtonSaveTypeRoom" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace pref="23" max="32767" attributes="0"/>
                               <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="94" max="-2" attributes="0"/>
                           </Group>

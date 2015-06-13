@@ -67,7 +67,7 @@ public class AdminWindow extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jTextFieldHotelName = new javax.swing.JTextField();
-        jTextFielHoteldAdress = new javax.swing.JTextField();
+        jTextFielHoteldAddress = new javax.swing.JTextField();
         jTextFieldHotelCountry = new javax.swing.JTextField();
         jTextFieldHotelPhoneNumber = new javax.swing.JTextField();
         jComboBoxYearOfBuilt = new javax.swing.JComboBox();
@@ -194,7 +194,7 @@ public class AdminWindow extends javax.swing.JFrame {
 
         jLabel1.setText("Hotel name:");
 
-        jLabel2.setText("Adress:");
+        jLabel2.setText("Address:");
 
         jLabel3.setText("Country:");
 
@@ -220,9 +220,9 @@ public class AdminWindow extends javax.swing.JFrame {
             }
         });
 
-        jTextFielHoteldAdress.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTextFielHoteldAddress.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextFielHoteldAdressKeyTyped(evt);
+                jTextFielHoteldAddressKeyTyped(evt);
             }
         });
 
@@ -344,7 +344,7 @@ public class AdminWindow extends javax.swing.JFrame {
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(jTextFieldTypeOFLodgin, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
                                                     .addComponent(jTextFieldHotelName, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFielHoteldAdress, javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jTextFielHoteldAddress, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jTextFieldHotelCountry, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jTextFieldHotelPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jComboBoxYearOfBuilt, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
@@ -398,7 +398,7 @@ public class AdminWindow extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextFielHoteldAdress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jTextFielHoteldAddress, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -640,7 +640,6 @@ public class AdminWindow extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -690,7 +689,7 @@ public class AdminWindow extends javax.swing.JFrame {
                                     .addComponent(jRadioButtonSmokeNo))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSaveTypeRoom)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                         .addComponent(jLabel25)
                         .addGap(94, 94, 94))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -1107,17 +1106,20 @@ public class AdminWindow extends javax.swing.JFrame {
         Object getYear= jComboBoxYearOfBuilt.getSelectedItem();     
         int year = getYear.hashCode();
         Category hotelCategory = HNHotelsCom.searchCategory(Integer.parseInt(jTextFieldCategoryCode.getText()));
-        if(!(jTextFieldHotelName.getText().equals("")||jTextFielHoteldAdress.getText().equals("")||
+        if(!(jTextFieldHotelName.getText().equals("")||jTextFielHoteldAddress.getText().equals("")||
         jTextFieldHotelCountry.getText().equals("")||jTextFieldHotelPhoneNumber.getText().equals("")||
-        jTextPaneHotelRequirements.getText().equals(""))||(jTextFieldTypeOFLodgin.getText().equals(""))){
-                 Hotel newHotel = new Hotel(jTextFieldHotelName.getText(),jTextFielHoteldAdress.getText(),
+        jTextPaneHotelRequirements.getText().equals("")||(jTextFieldTypeOFLodgin.getText().equals("")))
+        ||((int)jSpinnerCheckOutHour.getValue()!=0)||((int)jSpinnerCheckinHour.getValue()!=0)||
+        ((int)jSpinnerStarsNumber.getValue()!=0)||((int)jSpinnerHotelSize.getValue()!=0)){
+                
+                Hotel newHotel = new Hotel(jTextFieldHotelName.getText(),jTextFielHoteldAddress.getText(),
                 jTextFieldHotelCountry.getText(),Integer.parseInt(jTextFieldHotelPhoneNumber.getText()),
                 year, jTextFieldTypeOFLodgin.getText(),(int)jSpinnerHotelSize.getValue(),(int)jSpinnerCheckinHour.getValue()
                 ,(int)jSpinnerCheckOutHour.getValue(), jTextPaneHotelRequirements.getText(),(int)jSpinnerStarsNumber.getValue()
                 ,hotelCategory);
                 Global.getInstance().addHotel(newHotel);
                 JOptionPane.showMessageDialog(this,"Saved successfully");
-                jTextFielHoteldAdress.setText("");
+                jTextFielHoteldAddress.setText("");
                 jTextFieldHotelCountry.setText("");
                 jTextFieldHotelName.setText("");
                 jTextFieldHotelPhoneNumber.setText("");
@@ -1150,13 +1152,13 @@ public class AdminWindow extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextFieldHotelNameKeyTyped
 
-    private void jTextFielHoteldAdressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielHoteldAdressKeyTyped
+    private void jTextFielHoteldAddressKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFielHoteldAddressKeyTyped
         char c = evt.getKeyChar(); 
         if (!((c >= 65) && (c <= 90)||((c>=97)&&(c<=122))||((c>=48)&&(c<=57)) || (c == evt.VK_BACK_SPACE) || (c == evt.VK_DELETE))) { 
         getToolkit().beep(); 
         evt.consume(); 
         }
-    }//GEN-LAST:event_jTextFielHoteldAdressKeyTyped
+    }//GEN-LAST:event_jTextFielHoteldAddressKeyTyped
 
     private void jTextFieldHotelCountryKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHotelCountryKeyTyped
         char c = evt.getKeyChar(); 
@@ -1489,7 +1491,7 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JSpinner jSpinnerRoomSize;
     private javax.swing.JSpinner jSpinnerStarsNumber;
     private javax.swing.JTabbedPane jTabbedPane4;
-    private javax.swing.JTextField jTextFielHoteldAdress;
+    private javax.swing.JTextField jTextFielHoteldAddress;
     private javax.swing.JTextField jTextFieldAmountPrice;
     private javax.swing.JTextField jTextFieldAttractionName;
     private javax.swing.JTextField jTextFieldBedType;
