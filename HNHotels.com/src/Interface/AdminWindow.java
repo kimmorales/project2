@@ -1105,18 +1105,25 @@ public class AdminWindow extends javax.swing.JFrame {
     private void jButtonSaveHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveHotelActionPerformed
         Object getYear= jComboBoxYearOfBuilt.getSelectedItem();     
         int year = getYear.hashCode();
+        String hotelName =jTextFieldHotelName.getText();
+        String hotelAddress = jTextFielHoteldAddress.getText();
+        String hotelCountry = jTextFieldHotelCountry.getText();
+        String phoneNumber =jTextFieldHotelPhoneNumber.getText();
+        String requirements = jTextPaneHotelRequirements.getText();
+        String typeLodging = jTextFieldTypeOFLodgin.getText();
+        int checkout = (int)jSpinnerCheckOutHour.getValue();
+        int checkin = (int)jSpinnerCheckinHour.getValue();
+        int starsNumber = (int)jSpinnerStarsNumber.getValue();
+        int hotelSize = (int)jSpinnerHotelSize.getValue();
         Category hotelCategory = HNHotelsCom.searchCategory(Integer.parseInt(jTextFieldCategoryCode.getText()));
-        if(!(jTextFieldHotelName.getText().equals("")||jTextFielHoteldAddress.getText().equals("")||
-        jTextFieldHotelCountry.getText().equals("")||jTextFieldHotelPhoneNumber.getText().equals("")||
-        jTextPaneHotelRequirements.getText().equals("")||(jTextFieldTypeOFLodgin.getText().equals("")))
-        ||((int)jSpinnerCheckOutHour.getValue()!=0)||((int)jSpinnerCheckinHour.getValue()!=0)||
-        ((int)jSpinnerStarsNumber.getValue()!=0)||((int)jSpinnerHotelSize.getValue()!=0)){
+        
+        if((!(hotelName.equals("")))||(!(hotelAddress.equals("")))||(!(hotelCountry.equals("")))||(!(phoneNumber.equals("")))
+        ||(!(requirements.equals("")))||(!(typeLodging.equals("")))||(checkin!=0)||(checkout!=0)||(starsNumber!=0)||
+        (hotelSize!=0)||(year!=0)||(hotelCategory!=null)){
+            System.out.println("entra");
+                Hotel newHotel = new Hotel(hotelName, hotelAddress, hotelCountry,Integer.parseInt(phoneNumber),year, 
+                typeLodging, hotelSize, checkout,checkin, requirements, starsNumber, hotelCategory);
                 
-                Hotel newHotel = new Hotel(jTextFieldHotelName.getText(),jTextFielHoteldAddress.getText(),
-                jTextFieldHotelCountry.getText(),Integer.parseInt(jTextFieldHotelPhoneNumber.getText()),
-                year, jTextFieldTypeOFLodgin.getText(),(int)jSpinnerHotelSize.getValue(),(int)jSpinnerCheckinHour.getValue()
-                ,(int)jSpinnerCheckOutHour.getValue(), jTextPaneHotelRequirements.getText(),(int)jSpinnerStarsNumber.getValue()
-                ,hotelCategory);
                 Global.getInstance().addHotel(newHotel);
                 JOptionPane.showMessageDialog(this,"Saved successfully");
                 jTextFielHoteldAddress.setText("");
@@ -1129,8 +1136,6 @@ public class AdminWindow extends javax.swing.JFrame {
                 jSpinnerCheckOutHour.setValue(0);
                 jSpinnerCheckinHour.setValue(0);
                 jSpinnerStarsNumber.setValue(0);
-                
-                    
        }
         else
             JOptionPane.showMessageDialog(this, "Some data are required");
@@ -1202,7 +1207,7 @@ public class AdminWindow extends javax.swing.JFrame {
            jTextFieldCategoryCode.setText("");
            jTextPaneCategoryDescription.setText("");
            jSpinnerCategoryTax.setValue(0);
-           jComboBoxHotelCategory.addItem(category.getCode());
+           chargeCategory();
        }
         else 
             JOptionPane.showMessageDialog(this,"Some data are required !");
@@ -1250,16 +1255,21 @@ public class AdminWindow extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jButtonSaveTypeRoomActionPerformed
 
-    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    private void chargeCategory(){
         for(Category temporalCategory : Global.getInstance().getCategoryList()){
             jComboBoxHotelCategory.addItem(temporalCategory.getCode());
         }
+    }
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        
         chargeComboYear();
         chargeComboWithHotels(jComboBoxComboSelectHotel);
         chargeComboWithHotels(jComboBoxHotelList);
         chargeComboWithHotels(jComboBoxHotelsForImages);
         Hotel hotel = searchHotelCombo(jComboBoxComboSelectHotel);
         chargeJlistKindOfRoom(hotel);
+        chargeCategory();
+        
     }//GEN-LAST:event_formWindowOpened
 
     private void jComboBoxComboSelectHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxComboSelectHotelActionPerformed
@@ -1340,12 +1350,9 @@ public class AdminWindow extends javax.swing.JFrame {
     public void chargeComboWithHotels(JComboBox combo){
         for(Hotel temporalHotel : Global.getInstance().getHotelsList()){
             combo.addItem(temporalHotel.getName());
-                    
         }
     }
-    /**
-     * @param args the command line arguments
-     */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

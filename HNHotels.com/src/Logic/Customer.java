@@ -11,6 +11,7 @@ public class Customer extends User{
     private String currency;
     private ArrayList<Card> customerCards; 
     private int membershipNumber;
+    private ArrayList<Reserve> reserveList;
 
     public Customer(int membershipNumber, String country, String currency, 
    String ID, String name, String lastName, String genre, String email, String password, int phoneNumber, int type) {
@@ -19,7 +20,7 @@ public class Customer extends User{
         this.country = country;
         this.currency = currency;
         this.customerCards = new ArrayList();
-        
+        this.reserveList = new ArrayList();
     }
 
     public String getCountry() {
@@ -52,6 +53,14 @@ public class Customer extends User{
 
     public void setMembershipNumber(int membershipNumber) {
         this.membershipNumber = membershipNumber;
+    }
+
+    public ArrayList<Reserve> getReserveList() {
+        return reserveList;
+    }
+
+    public void setReserveList(ArrayList<Reserve> reserveList) {
+        this.reserveList = reserveList;
     }
     
     

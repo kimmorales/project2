@@ -380,6 +380,7 @@ public class LoginWindow extends javax.swing.JFrame {
        if((jPasswordFieldCheckin.getPassword().length>0 )&& (!jTextFieldEmail.getText().equals(""))&&
         (!jTextFieldLastName.getText().equals("")) && (!jTextFieldName.getText().equals(""))&&
         (jPasswordFieldConfirm.getPassword().length>0 )&& (!jTextFieldEmail.getText().equals(""))){ 
+           if(HNHotelsCom.searchUser(jTextFieldID.getText())==null){
             if(jPasswordFieldCheckin.getPassword().length>=6 && jPasswordFieldCheckin.getPassword().length<20){
                 if(checkPassword(jPasswordFieldCheckin.getPassword())){
                     if(Arrays.equals(jPasswordFieldCheckin.getPassword(),jPasswordFieldConfirm.getPassword())){
@@ -414,7 +415,12 @@ public class LoginWindow extends javax.swing.JFrame {
             } 
             else{
                 JOptionPane.showMessageDialog(this,"The password must be at least 6 characters and maximum 20.");
-            }  
+            }
+           }
+           else{
+               JOptionPane.showMessageDialog(this,"This user already exist!");
+           }
+              
         }
         else{
            JOptionPane.showMessageDialog(this,"Missing some data.");
@@ -443,12 +449,13 @@ public class LoginWindow extends javax.swing.JFrame {
                         new CustomerWindow().setVisible(true);
                     }
                     this.dispose();
-                    return;
+                   
                 }
             }
+            //JOptionPane.showMessageDialog(null,"This user doesn´t exist.");
         }
         else{
-            JOptionPane.showMessageDialog(null,"This user doesn´t exist.");
+         JOptionPane.showMessageDialog(this,"Required some data!");
         }
     }//GEN-LAST:event_jButtonLoginActionPerformed
 

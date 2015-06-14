@@ -31,8 +31,8 @@ public class Hotel {
     private Category hotelCategory;
 
     public Hotel(String name, String adress, String country, int phoneNumber, int yearBuilt,
-            String typeOfLodging, int hotelSize, int checkInHour, int checkOuyHour, String requirements,
-            int starsNumber,Category category) {
+    String typeOfLodging, int hotelSize, int checkInHour, int checkOuyHour, String requirements,
+    int starsNumber,Category category) {
         this.name = name;
         this.address = adress;
         this.country = country;
