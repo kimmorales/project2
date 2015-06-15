@@ -61,6 +61,9 @@ public class Reserve {
     public void setState(boolean state) {
         this.state = state;
     }
+    public void addRegister(Register register){
+        this.registerList.add(register);
+    }
     
     
     

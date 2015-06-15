@@ -11,17 +11,14 @@ import Logic.Global;
 import Logic.HNHotelsCom;
 import Logic.Hotel;
 import Logic.KindOfRoom;
+import Logic.Price;
 import Logic.Room;
 import Logic.Season;
 import Logic.Service;
 import Logic.TouristAttraction;
-import javax.imageio.ImageIO;
 import javax.swing.DefaultListModel;
-import javax.swing.ImageIcon;
 import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -29,12 +26,14 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class AdminWindow extends javax.swing.JFrame {
     private final Global global;
+    private final LoginWindow ancestor;
     
-    public AdminWindow() {
+    public AdminWindow(LoginWindow login) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         global= Global.getInstance();
+        this.ancestor = login;
         
        
     }
@@ -52,7 +51,10 @@ public class AdminWindow extends javax.swing.JFrame {
         seaview = new javax.swing.ButtonGroup();
         allIncluded = new javax.swing.ButtonGroup();
         somokePermission = new javax.swing.ButtonGroup();
-        jButton1 = new javax.swing.JButton();
+        jRadioButtonTerraceAux = new javax.swing.JRadioButton();
+        jRadioButtonSeaViewAux = new javax.swing.JRadioButton();
+        jRadioButtonAllInclude = new javax.swing.JRadioButton();
+        jRadioButtonSmoke = new javax.swing.JRadioButton();
         jTabbedPane4 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -76,11 +78,8 @@ public class AdminWindow extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jSpinnerCheckinHour = new javax.swing.JSpinner();
         jSpinnerCheckOutHour = new javax.swing.JSpinner();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTextPaneHotelRequirements = new javax.swing.JTextPane();
         jSpinnerStarsNumber = new javax.swing.JSpinner();
         jButtonSaveHotel = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel28 = new javax.swing.JLabel();
         jLabel30 = new javax.swing.JLabel();
         jComboBoxHotelCategory = new javax.swing.JComboBox();
@@ -94,6 +93,7 @@ public class AdminWindow extends javax.swing.JFrame {
         jButtonSaveCategory = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         jTextFieldCategoryCode = new javax.swing.JTextField();
+        jTextFieldHotelRequirements = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -177,15 +177,26 @@ public class AdminWindow extends javax.swing.JFrame {
         jComboBoxTypeOfRoomSeason = new javax.swing.JComboBox();
         jLabel59 = new javax.swing.JLabel();
         jComboBoxPriceRoomForSeason = new javax.swing.JComboBox();
-        jButton4 = new javax.swing.JButton();
+        jButtonRoomPrice = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jComboBoxHotelsForImages = new javax.swing.JComboBox();
         jLabel61 = new javax.swing.JLabel();
+        jButtonExit = new javax.swing.JButton();
 
-        jButton1.setText("jButton1");
+        terraceLounge.add(jRadioButtonTerraceAux);
+        jRadioButtonTerraceAux.setText("jRadioButton1");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        seaview.add(jRadioButtonSeaViewAux);
+        jRadioButtonSeaViewAux.setText("jRadioButton1");
+
+        allIncluded.add(jRadioButtonAllInclude);
+        jRadioButtonAllInclude.setText("jRadioButton1");
+
+        somokePermission.add(jRadioButtonSmoke);
+        jRadioButtonSmoke.setText("jRadioButton1");
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -255,26 +266,12 @@ public class AdminWindow extends javax.swing.JFrame {
 
         jSpinnerCheckOutHour.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
-        jTextPaneHotelRequirements.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextPaneHotelRequirementsKeyTyped(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTextPaneHotelRequirements);
-
         jSpinnerStarsNumber.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(0), Integer.valueOf(0), null, Integer.valueOf(1)));
 
         jButtonSaveHotel.setText("Add");
         jButtonSaveHotel.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonSaveHotelActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Back");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -324,37 +321,33 @@ public class AdminWindow extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel8)
-                                        .addGap(0, 0, Short.MAX_VALUE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(jLabel7)
-                                                .addGap(138, 138, 138)
-                                                .addComponent(jSpinnerHotelSize, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel6)
-                                                    .addComponent(jLabel1)
-                                                    .addComponent(jLabel9)
-                                                    .addComponent(jLabel11)
-                                                    .addComponent(jLabel10))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addComponent(jTextFieldTypeOFLodgin, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                                                    .addComponent(jTextFieldHotelName, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFielHoteldAddress, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFieldHotelCountry, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jTextFieldHotelPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jComboBoxYearOfBuilt, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
-                                                    .addComponent(jSpinnerStarsNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jComboBoxHotelCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jSpinnerCheckinHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jSpinnerCheckOutHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jButtonSaveHotel)
-                                                    .addComponent(jScrollPane1))))
-                                        .addGap(4, 4, 4)))
+                                        .addComponent(jLabel7)
+                                        .addGap(138, 138, 138)
+                                        .addComponent(jSpinnerHotelSize, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel9)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel10)
+                                            .addComponent(jLabel8))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(jTextFieldTypeOFLodgin, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                                            .addComponent(jTextFieldHotelName, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFielHoteldAddress, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldHotelCountry, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jTextFieldHotelPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jComboBoxYearOfBuilt, javax.swing.GroupLayout.Alignment.LEADING, 0, 134, Short.MAX_VALUE)
+                                            .addComponent(jSpinnerStarsNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jComboBoxHotelCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jSpinnerCheckinHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jSpinnerCheckOutHour, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButtonSaveHotel)
+                                            .addComponent(jTextFieldHotelRequirements, javax.swing.GroupLayout.Alignment.LEADING))))
+                                .addGap(4, 4, 4)
                                 .addComponent(jLabel12)
                                 .addGap(212, 212, 212))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -365,7 +358,6 @@ public class AdminWindow extends javax.swing.JFrame {
                                     .addComponent(jLabel4)
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel30)
-                                    .addComponent(jButton2)
                                     .addComponent(jLabel31))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jSeparator1))
@@ -415,28 +407,23 @@ public class AdminWindow extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(jTextFieldTypeOFLodgin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel7)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel8))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerHotelSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerCheckinHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSpinnerHotelSize, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jSpinnerCheckinHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel9)
                             .addComponent(jSpinnerCheckOutHour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(15, 15, 15)
-                                .addComponent(jLabel10))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jTextFieldHotelRequirements, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(22, 22, 22)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11)
                             .addComponent(jSpinnerStarsNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -445,9 +432,7 @@ public class AdminWindow extends javax.swing.JFrame {
                             .addComponent(jLabel30)
                             .addComponent(jComboBoxHotelCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(40, 40, 40)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2)
-                            .addComponent(jButtonSaveHotel)))
+                        .addComponent(jButtonSaveHotel))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(209, 209, 209)
                         .addComponent(jLabel12)))
@@ -469,7 +454,7 @@ public class AdminWindow extends javax.swing.JFrame {
                     .addComponent(jLabel33))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButtonSaveCategory)
-                .addContainerGap(148, Short.MAX_VALUE))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Add hotels", jPanel1);
@@ -689,7 +674,7 @@ public class AdminWindow extends javax.swing.JFrame {
                                     .addComponent(jRadioButtonSmokeNo))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonSaveTypeRoom)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel25)
                         .addGap(94, 94, 94))
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -826,7 +811,7 @@ public class AdminWindow extends javax.swing.JFrame {
                         .addComponent(jButtonSaveService)))
                 .addGap(22, 22, 22)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Attractions-Services", jPanel3);
@@ -887,17 +872,47 @@ public class AdminWindow extends javax.swing.JFrame {
 
         jLabel57.setText("Season:");
 
+        jComboBoxSeasonForRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSeasonForRoomActionPerformed(evt);
+            }
+        });
+
         jLabel58.setText("Type of room:");
+
+        jComboBoxTypeOfRoomSeason.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTypeOfRoomSeasonActionPerformed(evt);
+            }
+        });
 
         jLabel59.setText("Price:");
 
-        jButton4.setText("Save");
+        jButtonRoomPrice.setText("Save");
+        jButtonRoomPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRoomPriceActionPerformed(evt);
+            }
+        });
 
         jLabel29.setText("Images:");
 
         jButton5.setText("Add images");
 
+        jComboBoxHotelsForImages.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxHotelsForImagesActionPerformed(evt);
+            }
+        });
+
         jLabel61.setText("Hotel:");
+
+        jButtonExit.setText("Exit");
+        jButtonExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonExitActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -963,13 +978,15 @@ public class AdminWindow extends javax.swing.JFrame {
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jComboBoxTypeOfRoomSeason, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                .addComponent(jComboBoxSeasonForRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jComboBoxPriceRoomForSeason, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                            .addComponent(jButton4))
+                                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(28, 28, 28)
+                                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(jComboBoxSeasonForRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jComboBoxPriceRoomForSeason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jButtonRoomPrice, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                    .addComponent(jComboBoxTypeOfRoomSeason, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                            .addComponent(jLabel58))
                                         .addGap(60, 60, 60)
                                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel61)
@@ -977,8 +994,8 @@ public class AdminWindow extends javax.swing.JFrame {
                                                 .addGap(12, 12, 12)
                                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jComboBoxHotelsForImages, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                    .addComponent(jLabel58)
+                                                    .addComponent(jComboBoxHotelsForImages, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(jButtonExit, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                                     .addComponent(jLabel44)
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addGap(22, 22, 22)
@@ -1052,25 +1069,23 @@ public class AdminWindow extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBoxSeasonForRoom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel61))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 86, Short.MAX_VALUE)
-                        .addComponent(jLabel58)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
-                        .addComponent(jComboBoxTypeOfRoomSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel59)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxPriceRoomForSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jComboBoxHotelsForImages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton5)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxHotelsForImages, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton5)
+                    .addComponent(jLabel58))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBoxTypeOfRoomSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel59)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jComboBoxPriceRoomForSeason, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonRoomPrice)
+                    .addComponent(jButtonExit))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane4.addTab("Other", jPanel4);
@@ -1083,7 +1098,9 @@ public class AdminWindow extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane4)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jTabbedPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 757, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -1097,48 +1114,43 @@ public class AdminWindow extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButtonYesLoungeTerraceActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        this.setVisible(false);
-        new LoginWindow().setVisible(true);
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jButtonSaveHotelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveHotelActionPerformed
-        Object getYear= jComboBoxYearOfBuilt.getSelectedItem();     
-        int year = getYear.hashCode();
-        String hotelName =jTextFieldHotelName.getText();
-        String hotelAddress = jTextFielHoteldAddress.getText();
-        String hotelCountry = jTextFieldHotelCountry.getText();
-        String phoneNumber =jTextFieldHotelPhoneNumber.getText();
-        String requirements = jTextPaneHotelRequirements.getText();
-        String typeLodging = jTextFieldTypeOFLodgin.getText();
-        int checkout = (int)jSpinnerCheckOutHour.getValue();
-        int checkin = (int)jSpinnerCheckinHour.getValue();
-        int starsNumber = (int)jSpinnerStarsNumber.getValue();
-        int hotelSize = (int)jSpinnerHotelSize.getValue();
-        Category hotelCategory = HNHotelsCom.searchCategory(Integer.parseInt(jTextFieldCategoryCode.getText()));
+        if((jTextFieldHotelName.getText().equals("")) || (jTextFielHoteldAddress.getText().equals("")) || 
+        (jTextFieldHotelCountry.getText().equals("")) || (jTextFieldHotelPhoneNumber.getText().equals(""))
+        ||(jTextFieldHotelRequirements.getText().equals("")) || (jTextFieldTypeOFLodgin.getText().equals("")) || 
+        (jComboBoxYearOfBuilt.getSelectedItem()==null) ||(int)jSpinnerCheckinHour.getValue()==0 ||
+        (int)jSpinnerCheckOutHour.getValue()==0 || (int)jSpinnerHotelSize.getValue()==0 ||
+        jComboBoxYearOfBuilt.getSelectedItem()==null||(jComboBoxHotelCategory.getSelectedItem()==null)){
+             JOptionPane.showMessageDialog(this, "Some data are required");
+        }
+        else{
+            
+            String getYear= jComboBoxYearOfBuilt.getSelectedItem().toString();
+            int year = Integer.parseInt(getYear);
+            int phone = Integer.parseInt(jTextFieldHotelPhoneNumber.getText());
+            Category hotelCategory = HNHotelsCom.searchCategory(Integer.parseInt(jComboBoxHotelCategory.getSelectedItem().toString()));
+            Hotel newHotel = new Hotel(jTextFieldHotelName.getText(), jTextFielHoteldAddress.getText(),
+            jTextFieldHotelCountry.getText(),phone,
+           year,jTextFieldTypeOFLodgin.getText(),(int)jSpinnerHotelSize.getValue(),(int)jSpinnerCheckinHour.getValue(),
+           (int)jSpinnerCheckOutHour.getValue(),
+           jTextFieldHotelRequirements.getText(),(int)jSpinnerStarsNumber.getValue(),hotelCategory);          
+            
+            Global.getInstance().addHotel(newHotel);
+            JOptionPane.showMessageDialog(this,"Saved successfully");
+            jTextFielHoteldAddress.setText("");
+            jTextFieldHotelCountry.setText("");
+            jTextFieldHotelName.setText("");
+            jTextFieldHotelPhoneNumber.setText("");
+            jTextFieldHotelRequirements.setText("");
+            jTextFieldTypeOFLodgin.setText("");
+            jSpinnerHotelSize.setValue(0);
+            jSpinnerCheckOutHour.setValue(0);
+            jSpinnerCheckinHour.setValue(0);
+            jSpinnerStarsNumber.setValue(0);
         
-        if((!(hotelName.equals("")))||(!(hotelAddress.equals("")))||(!(hotelCountry.equals("")))||(!(phoneNumber.equals("")))
-        ||(!(requirements.equals("")))||(!(typeLodging.equals("")))||(checkin!=0)||(checkout!=0)||(starsNumber!=0)||
-        (hotelSize!=0)||(year!=0)||(hotelCategory!=null)){
-            System.out.println("entra");
-                Hotel newHotel = new Hotel(hotelName, hotelAddress, hotelCountry,Integer.parseInt(phoneNumber),year, 
-                typeLodging, hotelSize, checkout,checkin, requirements, starsNumber, hotelCategory);
-                
-                Global.getInstance().addHotel(newHotel);
-                JOptionPane.showMessageDialog(this,"Saved successfully");
-                jTextFielHoteldAddress.setText("");
-                jTextFieldHotelCountry.setText("");
-                jTextFieldHotelName.setText("");
-                jTextFieldHotelPhoneNumber.setText("");
-                jTextPaneHotelRequirements.setText("");
-                jTextFieldTypeOFLodgin.setText("");
-                jSpinnerHotelSize.setValue(0);
-                jSpinnerCheckOutHour.setValue(0);
-                jSpinnerCheckinHour.setValue(0);
-                jSpinnerStarsNumber.setValue(0);
-       }
-        else
-            JOptionPane.showMessageDialog(this, "Some data are required");
+            jComboBoxHotelList.addItem(newHotel.getName());
+        }
+        
     }//GEN-LAST:event_jButtonSaveHotelActionPerformed
 
     private void jTextFieldHotelPhoneNumberKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldHotelPhoneNumberKeyTyped
@@ -1180,14 +1192,6 @@ public class AdminWindow extends javax.swing.JFrame {
         evt.consume(); 
         }
     }//GEN-LAST:event_jTextFieldTypeOFLodginKeyTyped
-
-    private void jTextPaneHotelRequirementsKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPaneHotelRequirementsKeyTyped
-        char c = evt.getKeyChar(); 
-        if (!((c >= 65) && (c <= 90)||((c>=97)&&(c<=122)) || (c == evt.VK_BACK_SPACE) || (c == evt.VK_DELETE))) { 
-        getToolkit().beep(); 
-        evt.consume(); 
-        }
-    }//GEN-LAST:event_jTextPaneHotelRequirementsKeyTyped
 
     private void jTextFieldCategoryCodeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldCategoryCodeKeyTyped
         char c = evt.getKeyChar(); 
@@ -1232,32 +1236,41 @@ public class AdminWindow extends javax.swing.JFrame {
         jTextPaneDescriptionRoom.setText("");
         jSpinnerIDRoom.setValue(0);
     }//GEN-LAST:event_jButtonSaveRoomActionPerformed
-    private Hotel searchHotelCombo(JComboBox combo){
-        Object hotel = combo.getSelectedItem();     
-        Hotel hotelToSearch = HNHotelsCom.searchHotel(hotel.toString());
-        return hotelToSearch;
-    }
+
     private void jButtonSaveTypeRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveTypeRoomActionPerformed
-    Hotel hotel =searchHotelCombo(jComboBoxHotelList);
-    KindOfRoom newKindOFRoom = new KindOfRoom((int)jSpinnerFloor.getValue(),jTextFieldBedType.getText()
-    ,(int) jSpinnerMaxGuest.getValue(),(int)jSpinnerHotelSize.getValue(),jRadioButtonYesLoungeTerrace.isSelected()
-    , jRadioButtonYesSeaview.isSelected(), jRadioButtonAllIncludedYes.isSelected(),jRadioButtonSmokeYes.isSelected());
-    hotel.addKindRoom(newKindOFRoom);
-    jSpinnerFloor.setValue(0);
-    jTextFieldBedType.setText("");
-    jSpinnerMaxGuest.setValue(0);
-    jSpinnerHotelSize.setValue(0);
-    jRadioButtonAllIncludedYes.setSelected(false);
-    jRadioButtonYesSeaview.setSelected(false);
-    jRadioButtonSmokeYes.setSelected(false);
-    jRadioButtonYesLoungeTerrace.setSelected(false);
-    chargeJlistKindOfRoom(hotel);
-       
+    Hotel hotel =HNHotelsCom.searchHotel(jComboBoxComboSelectHotel.getSelectedItem().toString());
+    if(((int)jSpinnerFloor.getValue()==0)|| (jTextFieldBedType.getText().equals(""))||
+    ((int)jSpinnerMaxGuest.getValue()==0)||((int)jSpinnerRoomSize.getValue()==0)){
+        JOptionPane.showMessageDialog(this,"Some data are required.");
+    }
+    else{
+        KindOfRoom newKindOFRoom = new KindOfRoom((int)jSpinnerFloor.getValue(),jTextFieldBedType.getText()
+        ,(int) jSpinnerMaxGuest.getValue(),(int)jSpinnerHotelSize.getValue(),jRadioButtonYesLoungeTerrace.isSelected()
+        , jRadioButtonYesSeaview.isSelected(), jRadioButtonAllIncludedYes.isSelected(),jRadioButtonSmokeYes.isSelected());
+        hotel.addKindRoom(newKindOFRoom);
+        jSpinnerFloor.setValue(0);
+        jTextFieldBedType.setText("");
+        jSpinnerMaxGuest.setValue(0);
+        jSpinnerHotelSize.setValue(0);
+        jRadioButtonAllInclude.setSelected(true);
+        jRadioButtonSeaViewAux.setSelected(true);
+        jRadioButtonSmoke.setSelected(true);
+        jRadioButtonTerraceAux.setSelected(true);
+        chargeJlistKindOfRoom(hotel);
+    }
+  
     }//GEN-LAST:event_jButtonSaveTypeRoomActionPerformed
 
     private void chargeCategory(){
         for(Category temporalCategory : Global.getInstance().getCategoryList()){
             jComboBoxHotelCategory.addItem(temporalCategory.getCode());
+        }
+    }
+    
+    private void chargeComboSeason(Hotel hotel){
+        jComboBoxSeasonForRoom.removeAllItems();
+        for(Season temporalSeason : hotel.getSeasons()){
+            jComboBoxSeasonForRoom.addItem(temporalSeason.getCode());
         }
     }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -1266,8 +1279,7 @@ public class AdminWindow extends javax.swing.JFrame {
         chargeComboWithHotels(jComboBoxComboSelectHotel);
         chargeComboWithHotels(jComboBoxHotelList);
         chargeComboWithHotels(jComboBoxHotelsForImages);
-        Hotel hotel = searchHotelCombo(jComboBoxComboSelectHotel);
-        chargeJlistKindOfRoom(hotel);
+        chargeJlistKindOfRoom(HNHotelsCom.searchHotel(jComboBoxComboSelectHotel.getSelectedItem().toString()));
         chargeCategory();
         
     }//GEN-LAST:event_formWindowOpened
@@ -1285,39 +1297,49 @@ public class AdminWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldTypeOFLodginActionPerformed
 
     private void jButtonSaveTouristAttractionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveTouristAttractionActionPerformed
-       Hotel hotel = searchHotelCombo(jComboBoxComboSelectHotel);
-       if(jTextFieldIDTouristAttraction.getText().equals("")||jTextFieldAttractionName.getText().equals("")){
+       Hotel hotel = HNHotelsCom.searchHotel(jComboBoxComboSelectHotel.getSelectedItem().toString());
+       if(jTextFieldIDTouristAttraction.getText().equals("") || jTextFieldAttractionName.getText().equals("")){
            JOptionPane.showMessageDialog(this, "Some date are required !");
        }
        else{
            TouristAttraction touristAttraction = new TouristAttraction(jTextFieldIDTouristAttraction.getText(),jTextFieldAttractionName.getText());
            hotel.addAtraction(touristAttraction);
-           jTextFieldIDTouristAttraction.setText("");
-           jTextFieldAttractionName.setText("");
+           
        }
+       jTextFieldIDTouristAttraction.setText("");
+       jTextFieldAttractionName.setText("");
            
     }//GEN-LAST:event_jButtonSaveTouristAttractionActionPerformed
 
     private void jButtonSaveServiceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveServiceActionPerformed
-        Hotel hotel = searchHotelCombo(jComboBoxComboSelectHotel);
-        if(jTextFieldServiceCode.getText().equals("")||jTextFieldServiceName.getText().equals("")){
+        Hotel hotelSearch = HNHotelsCom.searchHotel(jComboBoxComboSelectHotel.getSelectedItem().toString());
+        if(jTextFieldServiceCode.getText().equals("") || jTextFieldServiceName.getText().equals("")){
             JOptionPane.showMessageDialog(this,"Some date are required !");
         }
         else{
             Service service = new Service(jTextFieldServiceCode.getText(),jTextFieldServiceName.getText());
-            hotel.addHotelServive(service);
-            jTextFieldServiceCode.setText("");
-            jTextFieldServiceName.setText("");
+            hotelSearch.addHotelServive(service);
+            
         }
+        jTextFieldServiceCode.setText("");
+        jTextFieldServiceName.setText("");
         
     }//GEN-LAST:event_jButtonSaveServiceActionPerformed
 
     private void jButtonSaveSeasonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSaveSeasonActionPerformed
-        Season newSeason = new Season(jTextFieldSeasonCode.getText(),jTextFieldSeasonName.getText(),
-        HNHotelsCom.createDate((int)jSpinnerDayStartSeason.getValue(),(int)jSpinnerMonthStartSeason.getValue()),
-        HNHotelsCom.createDate((int)jSpinnerDayEndSeason.getValue(),(int)jSpinnerEndMonthSeason.getValue()));
-        Hotel hotel = searchHotelCombo(jComboBoxHotelList);
-        hotel.registerSeason(newSeason);
+        Hotel hotel = HNHotelsCom.searchHotel(jComboBoxComboSelectHotel.getSelectedItem().toString());
+        if(jTextFieldSeasonCode.getText().equals("")|| jTextFieldSeasonName.getText().equals("")||
+        (int)jSpinnerDayStartSeason.getValue()==0||(int)jSpinnerMonthStartSeason.getValue()==0 || 
+        (int)jSpinnerDayEndSeason.getValue()==0||(int)jSpinnerEndMonthSeason.getValue()==0){
+           JOptionPane.showMessageDialog(this,"Some data are required!");
+        }
+        else{
+             Season newSeason = new Season(jTextFieldSeasonCode.getText(),jTextFieldSeasonName.getText(),
+            HNHotelsCom.createDate((int)jSpinnerDayStartSeason.getValue(),(int)jSpinnerMonthStartSeason.getValue()),
+            HNHotelsCom.createDate((int)jSpinnerDayEndSeason.getValue(),(int)jSpinnerEndMonthSeason.getValue()));
+            hotel.registerSeason(newSeason);
+        }
+       
     }//GEN-LAST:event_jButtonSaveSeasonActionPerformed
 
     private void chargeJlistKindOfRoom(Hotel hotel){
@@ -1330,15 +1352,68 @@ public class AdminWindow extends javax.swing.JFrame {
     
     private void jComboBoxHotelListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHotelListActionPerformed
         if(jComboBoxHotelList.getSelectedItem() != null){
-            Hotel hotel = global.getHotelsList().get(jComboBoxHotelList.getSelectedIndex()); 
+            Hotel hotel = HNHotelsCom.searchHotel(jComboBoxHotelList.getSelectedItem().toString());
             chargeJlistKindOfRoom(hotel);
         }
     }//GEN-LAST:event_jComboBoxHotelListActionPerformed
 
     private void jButtonSavePriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSavePriceActionPerformed
-        
+       
     }//GEN-LAST:event_jButtonSavePriceActionPerformed
 
+    private void jButtonExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExitActionPerformed
+        this.setVisible(false);
+        this.ancestor.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonExitActionPerformed
+    private void chargeComboTypesRoom(Season season){
+        jComboBoxTypeOfRoomSeason.removeAllItems();
+        for(KindOfRoom kindRoom : season.getSeasonRoomList()){
+            jComboBoxTypeOfRoomSeason.addItem(kindRoom.getFloor());
+        }
+    }
+    
+    private void jComboBoxSeasonForRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSeasonForRoomActionPerformed
+       Hotel hotel = HNHotelsCom.searchHotel(jComboBoxHotelsForImages.getSelectedItem().toString());
+       Season season = HNHotelsCom.searchSeason(hotel,jComboBoxSeasonForRoom.getSelectedItem().toString());
+        chargeComboTypesRoom(season);
+        chargePricesForSeason(season);
+    }//GEN-LAST:event_jComboBoxSeasonForRoomActionPerformed
+
+    private void jComboBoxHotelsForImagesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxHotelsForImagesActionPerformed
+        Hotel hotel = HNHotelsCom.searchHotel(jComboBoxHotelsForImages.getSelectedItem().toString());
+        chargeComboSeason(hotel);
+    }//GEN-LAST:event_jComboBoxHotelsForImagesActionPerformed
+
+    private void jComboBoxTypeOfRoomSeasonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTypeOfRoomSeasonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxTypeOfRoomSeasonActionPerformed
+
+    private void jButtonRoomPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRoomPriceActionPerformed
+        Hotel hotel = HNHotelsCom.searchHotel(jComboBoxHotelsForImages.getSelectedItem().toString());
+        KindOfRoom roomSearched = HNHotelsCom.searchKindOfRoom(hotel,jComboBoxTypeOfRoomSeason.getSelectedItem().toString());
+        Season season = HNHotelsCom.searchSeason(hotel,jComboBoxSeasonForRoom.getSelectedItem().toString());
+        Price selectPrice = HNHotelsCom.searchPrice(season,jComboBoxPriceRoomForSeason.getSelectedItem().toString());
+        if(hotel == null ||roomSearched ==null || season ==null || selectPrice ==null){
+            JOptionPane.showMessageDialog(this,"Some erroneous data!");
+        }
+        else{
+            for(Season temporalSeason : hotel.getSeasons()){
+            if(season.getCode().equals(temporalSeason.getCode())){
+                for(KindOfRoom room : season.getSeasonRoomList())
+                    if(room.getBedType().equals(roomSearched.getBedType())){
+                        room.setPrice(selectPrice);
+                    }
+            }
+        }
+        }
+        
+    }//GEN-LAST:event_jButtonRoomPriceActionPerformed
+    private void chargePricesForSeason(Season season){
+        for(Price price : season.getSeasonPriceList()){
+            jComboBoxPriceRoomForSeason.addItem(price.getPriceCode());
+        }
+    }
     public void chargeComboYear(){
         int anno = 2015;
         while(anno >= 1900){
@@ -1348,6 +1423,7 @@ public class AdminWindow extends javax.swing.JFrame {
     }
     
     public void chargeComboWithHotels(JComboBox combo){
+        combo.removeAllItems();
         for(Hotel temporalHotel : Global.getInstance().getHotelsList()){
             combo.addItem(temporalHotel.getName());
         }
@@ -1380,17 +1456,16 @@ public class AdminWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AdminWindow().setVisible(true);
+                new AdminWindow(null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup allIncluded;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButtonExit;
+    private javax.swing.JButton jButtonRoomPrice;
     private javax.swing.JButton jButtonSaveCategory;
     private javax.swing.JButton jButtonSaveHotel;
     private javax.swing.JButton jButtonSavePrice;
@@ -1469,15 +1544,18 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JRadioButton jRadioButtonAllInclude;
     private javax.swing.JRadioButton jRadioButtonAllIncludedNo;
     private javax.swing.JRadioButton jRadioButtonAllIncludedYes;
     private javax.swing.JRadioButton jRadioButtonNoLoungeTerrace;
     private javax.swing.JRadioButton jRadioButtonNoSeaview;
+    private javax.swing.JRadioButton jRadioButtonSeaViewAux;
+    private javax.swing.JRadioButton jRadioButtonSmoke;
     private javax.swing.JRadioButton jRadioButtonSmokeNo;
     private javax.swing.JRadioButton jRadioButtonSmokeYes;
+    private javax.swing.JRadioButton jRadioButtonTerraceAux;
     private javax.swing.JRadioButton jRadioButtonYesLoungeTerrace;
     private javax.swing.JRadioButton jRadioButtonYesSeaview;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -1507,6 +1585,7 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldHotelCountry;
     private javax.swing.JTextField jTextFieldHotelName;
     private javax.swing.JTextField jTextFieldHotelPhoneNumber;
+    private javax.swing.JTextField jTextFieldHotelRequirements;
     private javax.swing.JTextField jTextFieldIDTouristAttraction;
     private javax.swing.JTextField jTextFieldPriceCode;
     private javax.swing.JTextField jTextFieldSeasonCode;
@@ -1516,7 +1595,6 @@ public class AdminWindow extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldTypeOFLodgin;
     private javax.swing.JTextPane jTextPaneCategoryDescription;
     private javax.swing.JTextPane jTextPaneDescriptionRoom;
-    private javax.swing.JTextPane jTextPaneHotelRequirements;
     private javax.swing.ButtonGroup seaview;
     private javax.swing.ButtonGroup somokePermission;
     private javax.swing.ButtonGroup terraceLounge;

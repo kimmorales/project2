@@ -16,6 +16,7 @@ public class KindOfRoom {
     private boolean allIncluded;
     private boolean smokedPermission;
     private ArrayList<Room> roomsList;
+    private Price price;
 
     public KindOfRoom(int floor, String bedType, int maximumNumberGuests, int roomSize,
     boolean hasLoungeOrTerrace, boolean hasSeaview, boolean allIncluded, boolean smokedPermission){
@@ -28,6 +29,7 @@ public class KindOfRoom {
         this.allIncluded = allIncluded;
         this.smokedPermission = smokedPermission;
         this.roomsList = new ArrayList();
+        this.price = null;
     }
 
     public int getFloor() {
@@ -103,6 +105,14 @@ public class KindOfRoom {
     }
     public void addRoom(Room room){
         this.roomsList.add(room);
+    }
+
+    public Price getPrice() {
+        return price;
+    }
+
+    public void setPrice(Price price) {
+        this.price = price;
     }
     
     

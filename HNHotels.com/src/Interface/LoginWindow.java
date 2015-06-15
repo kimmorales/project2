@@ -443,7 +443,7 @@ public class LoginWindow extends javax.swing.JFrame {
                 if(temporalUser.getEmail().equals(jTextFieldEmailLogin.getText()) &&
                 temporalUser.getPassword().equals(convertChar(jPasswordFieldLogin.getPassword()))){
                     if(temporalUser instanceof Admin){
-                        new AdminWindow().setVisible(true);
+                        new AdminWindow(this).setVisible(true);
                     }
                     else{
                         new CustomerWindow().setVisible(true);

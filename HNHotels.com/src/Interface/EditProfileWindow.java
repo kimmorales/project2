@@ -28,21 +28,62 @@ public class EditProfileWindow extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jLabel1 = new javax.swing.JLabel();
+        jTextFieldIDEditProfile = new javax.swing.JTextField();
+
+        jCheckBox1.setText("jCheckBox1");
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setText("ID:");
+
+        jTextFieldIDEditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldIDEditProfileActionPerformed(evt);
+            }
+        });
+        jTextFieldIDEditProfile.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextFieldIDEditProfileKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 411, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jLabel1)
+                .addGap(43, 43, 43)
+                .addComponent(jTextFieldIDEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(191, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 560, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(jTextFieldIDEditProfile, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(528, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextFieldIDEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldIDEditProfileActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldIDEditProfileActionPerformed
+
+    private void jTextFieldIDEditProfileKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDEditProfileKeyTyped
+       char c = evt.getKeyChar(); 
+        if (!((c >= 48) && (c <= 57) || (c == evt.VK_BACK_SPACE) || (c == evt.VK_DELETE))) { 
+        getToolkit().beep(); 
+        evt.consume(); 
+        }       
+    }//GEN-LAST:event_jTextFieldIDEditProfileKeyTyped
 
     /**
      * @param args the command line arguments
@@ -80,5 +121,8 @@ public class EditProfileWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField jTextFieldIDEditProfile;
     // End of variables declaration//GEN-END:variables
 }

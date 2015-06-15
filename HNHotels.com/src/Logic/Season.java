@@ -82,5 +82,11 @@ public class Season {
         this.seasonPriceList = seasonPriceList;
     }
     
+    public void addRoomSeason(KindOfRoom room){
+        this.seasonRoomList.add(room);
+    }
+    public void addPrice(Price price){
+        this.seasonPriceList.add(price);
+    }
     
 }

@@ -11,10 +11,13 @@ import Logic.HNHotelsCom;
 import Logic.Hotel;
 import Logic.KindOfRoom;
 import Logic.Register;
+import Logic.Reserve;
 import Logic.Room;
+import Logic.Season;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -69,6 +72,8 @@ public class ReservesWindow extends javax.swing.JFrame {
         jSpinnerChilndrenNumber = new javax.swing.JSpinner();
         jComboBoxTypeRoom = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jComboBoxSeasonForReserve = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -134,8 +139,21 @@ public class ReservesWindow extends javax.swing.JFrame {
                 jComboBoxTypeRoomMouseClicked(evt);
             }
         });
+        jComboBoxTypeRoom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxTypeRoomActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Select rooms:");
+
+        jLabel14.setText("Season:");
+
+        jComboBoxSeasonForReserve.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxSeasonForReserveActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -143,81 +161,95 @@ public class ReservesWindow extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel1)
-                                            .addGap(45, 45, 45)
-                                            .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jLabel2)))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addGap(63, 63, 63)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(26, 26, 26)
+                                .addComponent(jComboBoxTypeRoom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel8)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jSpinnerNumberAdults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel11))
+                                        .addGap(28, 28, 28)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                            .addComponent(jLabel12)
+                                            .addComponent(jSpinnerChilndrenNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButtonReserve)))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jSpinnerDepartureDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jSpinnerEntryDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(jSpinnerNigthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))))
-                            .addGap(42, 42, 42)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jSpinnerEntryMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jSpinnerDepartureMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel5)
-                                .addComponent(jLabel8)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addGap(26, 26, 26)
-                                    .addComponent(jComboBoxTypeRoom, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jTextFieldResponsiblePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel10)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jSpinnerNumberAdults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLabel11))
-                                    .addGap(28, 28, 28)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jLabel12)
-                                        .addComponent(jSpinnerChilndrenNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jButtonReserve))))))
+                                        .addComponent(jTextFieldResponsiblePerson, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jLabel10))))
+                                .addGap(0, 5, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(51, 51, 51)
                         .addComponent(jLabel13)))
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinnerDepartureDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jSpinnerEntryDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSpinnerNigthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(27, 27, 27)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinnerEntryMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jSpinnerDepartureMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jComboBoxSeasonForReserve, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel14)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jComboBoxSeasonForReserve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
+                        .addComponent(jSpinnerEntryDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(jSpinnerEntryMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSpinnerEntryDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jSpinnerEntryMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -265,20 +297,23 @@ public class ReservesWindow extends javax.swing.JFrame {
             }
         jListRoomSelected.setModel(model);
     }
-    private void chargeComboTypeRooms(Hotel hotel){
-        for(KindOfRoom temporalKindRoom: hotel.getKindOfRoomList()){
+    private void chargeComboTypeRooms(Season season){
+        for(KindOfRoom temporalKindRoom: season.getSeasonRoomList()){
             jComboBoxTypeRoom.addItem(temporalKindRoom.getBedType());
         }
     }
-    
+    private void chargeComboSeason(Hotel hotel){
+        for(Season temporalSeason : hotel.getSeasons()){
+            jComboBoxSeasonForReserve.addItem(temporalSeason.getCode());
+        }
+    }
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        jLabelHotelSelected.setText(this.hotel.getName());
        this.ancestor.setVisible(true);
        jTextFieldResponsiblePerson.setEnabled(false);
        jSpinnerChilndrenNumber.setEnabled(false);
        jSpinnerNumberAdults.setEnabled(false);
-       chargeComboTypeRooms(this.hotel);
-       //chargeAllRoomsOnJlist(room);
+       chargeComboSeason(this.hotel);
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -286,31 +321,53 @@ public class ReservesWindow extends javax.swing.JFrame {
         jTextFieldResponsiblePerson.setEnabled(true);
         jSpinnerChilndrenNumber.setEnabled(true);
         jSpinnerNumberAdults.setEnabled(true);
-        if(evt.getClickCount()==2){
-            
-            //selectedRooms();
-        }
-        
     }//GEN-LAST:event_jListRoomSelectedMouseClicked
-    /*
-    private ArrayList<Room> selectedRooms(KindOfRoom room){
-        ArrayList<Room> listRoom= new ArrayList();
-    }
-    */
+
     private void jButtonReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReserveActionPerformed
-        GregorianCalendar entryDate = HNHotelsCom.createDate((int)jSpinnerEntryDay.getValue(),(int)jSpinnerEntryMonth.getValue());
-        GregorianCalendar departureDAte = HNHotelsCom.createDate((int)jSpinnerDepartureDay.getValue(),(int)jSpinnerDepartureMonth.getValue());
+        if(((int)jSpinnerChilndrenNumber.getValue()==0)||((int)jSpinnerDepartureDay.getValue()==0)||
+        ((int)jSpinnerDepartureMonth.getValue()==0)||((int)jSpinnerEntryDay.getValue()==0)||((int)jSpinnerEntryMonth.getValue()==0)||
+        ((int)jSpinnerNigthNumber.getValue()==0)||((int)jSpinnerNumberAdults.getValue()==0)||(jTextFieldResponsiblePerson.getText().equals(""))){
+            JOptionPane.showMessageDialog(this,"Some data are required!");
+        }
+        else{
+            
+            GregorianCalendar entryDate = HNHotelsCom.createDate((int)jSpinnerEntryDay.getValue(),(int)jSpinnerEntryMonth.getValue());
+            GregorianCalendar departureDAte = HNHotelsCom.createDate((int)jSpinnerDepartureDay.getValue(),(int)jSpinnerDepartureMonth.getValue());
+            
+            Register register = new Register(jTextFieldResponsiblePerson.getText(),(int)jSpinnerNumberAdults.getValue(),(int)jSpinnerChilndrenNumber.getValue());
+            Reserve reserve = new Reserve(entryDate, departureDAte,(int)jSpinnerNigthNumber.getValue(),true);
+            reserve.getRegisterList().add(register);
+            Object object = jComboBoxTypeRoom.getSelectedItem();
+            KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
+            int idRoom =Integer.parseInt( jListRoomSelected.getModel()
+            .getElementAt(jListRoomSelected.getSelectedIndex()).toString());
+            
+            Room newRoom = HNHotelsCom.searchRoom(hotel, room,idRoom);
+            register.getRoomsSelectedList().add(newRoom);
+            reserve.addRegister(register);
+            System.out.println("exito");
+            System.out.println(newRoom.toString());
+        }
+    
         
-        Register register = new Register(jTextFieldResponsiblePerson.getText(),(int)jSpinnerNumberAdults.getValue(),(int)jSpinnerChilndrenNumber.getValue());
-        
-        
+      
     }//GEN-LAST:event_jButtonReserveActionPerformed
 
     private void jComboBoxTypeRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxTypeRoomMouseClicked
-        Object object = jComboBoxTypeRoom.getSelectedItem();
-        KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
         
     }//GEN-LAST:event_jComboBoxTypeRoomMouseClicked
+
+    private void jComboBoxTypeRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTypeRoomActionPerformed
+        Object object = jComboBoxTypeRoom.getSelectedItem();
+        KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
+        chargeAllRoomsOnJlist(room);
+    }//GEN-LAST:event_jComboBoxTypeRoomActionPerformed
+
+    private void jComboBoxSeasonForReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSeasonForReserveActionPerformed
+       Object obj= jComboBoxSeasonForReserve.getSelectedItem();
+       Season season = HNHotelsCom.searchSeason(hotel,obj.toString());
+        chargeComboTypeRooms(season);
+    }//GEN-LAST:event_jComboBoxSeasonForReserveActionPerformed
 
     /**
      * @param args the command line arguments
@@ -349,12 +406,14 @@ public class ReservesWindow extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonReserve;
+    private javax.swing.JComboBox jComboBoxSeasonForReserve;
     private javax.swing.JComboBox jComboBoxTypeRoom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
