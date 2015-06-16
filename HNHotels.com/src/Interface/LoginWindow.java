@@ -68,7 +68,7 @@ public class LoginWindow extends javax.swing.JFrame {
         jPasswordFieldCheckin = new javax.swing.JPasswordField();
         jPasswordFieldConfirm = new javax.swing.JPasswordField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel1.setText("Welcome HNHoteles.com");
@@ -142,7 +142,7 @@ public class LoginWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Cancel");
+        jButton2.setText("Exit");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
@@ -444,19 +444,28 @@ public class LoginWindow extends javax.swing.JFrame {
                 temporalUser.getPassword().equals(convertChar(jPasswordFieldLogin.getPassword()))){
                     if(temporalUser instanceof Admin){
                         new AdminWindow(this).setVisible(true);
+                        jTextFieldEmailLogin.setText("");
+                        jPasswordFieldLogin.setText("");
+                        this.dispose();
+                        return;
                     }
                     else{
-                        new CustomerWindow().setVisible(true);
+                        new CustomerWindow(this,(Customer)temporalUser).setVisible(true);
+                        jTextFieldEmailLogin.setText("");
+                        jPasswordFieldLogin.setText("");
+                        this.dispose();
+                        return;
                     }
-                    this.dispose();
-                   
                 }
             }
-            //JOptionPane.showMessageDialog(null,"This user doesn´t exist.");
+            JOptionPane.showMessageDialog(null,"This user doesn´t exist.");
+            jTextFieldEmailLogin.setText("");
+            jPasswordFieldLogin.setText("");
         }
-        else{
+         else{
          JOptionPane.showMessageDialog(this,"Required some data!");
         }
+       
     }//GEN-LAST:event_jButtonLoginActionPerformed
 
     private void jTextFieldIDKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldIDKeyTyped

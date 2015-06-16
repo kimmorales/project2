@@ -8,18 +8,21 @@ import java.util.GregorianCalendar;
  * @author Kimberly
  */
 public class Reserve {
+    private String code;
     private GregorianCalendar entryDate;
     private GregorianCalendar departureDate;
     private int numbersNights;
     private ArrayList<Register> registerList;
     private boolean state;
 
-    public Reserve(GregorianCalendar entryDate, GregorianCalendar departureDate, int numbersNights,boolean state) {
+    public Reserve(String code,GregorianCalendar entryDate, GregorianCalendar departureDate, int numbersNights,boolean state) {
         this.entryDate = entryDate;
         this.departureDate = departureDate;
         this.numbersNights = numbersNights;
         this.registerList = new ArrayList();
         this.state = state;
+        this.code = code;
+        this.state =state;
     }
 
     public GregorianCalendar getEntryDate() {
@@ -64,7 +67,21 @@ public class Reserve {
     public void addRegister(Register register){
         this.registerList.add(register);
     }
-    
-    
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+    public String viewReserveState(Reserve reserve){
+        if(reserve.isState() == true){
+            return "Active";
+        }
+        else{
+            return "Cancel";
+        }
+    }
     
 }

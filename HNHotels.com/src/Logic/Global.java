@@ -38,7 +38,7 @@ public class Global {
     }
 
     public void setHotelsList(ArrayList<Hotel> hotelsList) {
-        this.hotelsList = hotelsList;
+        instance.hotelsList = hotelsList;
     }
 
     public ArrayList<User> getUsersList() {
@@ -46,7 +46,7 @@ public class Global {
     }
 
     public void setUsersList(ArrayList<User> usersList) {
-        this.usersList = usersList;
+        instance.usersList = usersList;
     }
 
     public ArrayList<Service> getServicesList() {
@@ -54,7 +54,7 @@ public class Global {
     }
 
     public void setServicesList(ArrayList<Service> servicesList) {
-        this.servicesList = servicesList;
+        instance.servicesList = servicesList;
     }
 
     public int getUserCount() {
@@ -62,7 +62,7 @@ public class Global {
     }
 
     public void setUserCount(int userCount) {
-        this.userCount= userCount;
+        instance.userCount= userCount;
     }
     
     public void addNewUser(User user){
@@ -74,7 +74,7 @@ public class Global {
     }
 
     public void setCategoryList(ArrayList<Category> categoryList) {
-        this.categoryList = categoryList;
+        instance.categoryList = categoryList;
     }
     public void addHotel(Hotel hotel){
         instance.hotelsList.add(hotel);
@@ -85,7 +85,7 @@ public class Global {
     }
 
     public void setCancelReservationsList(ArrayList<Reserve> cancelReservationsList) {
-        this.cancelReservationsList = cancelReservationsList;
+        instance.cancelReservationsList = cancelReservationsList;
     }
 
     public ArrayList<Reserve> getCompleteReservationList() {
@@ -93,7 +93,14 @@ public class Global {
     }
 
     public void setCompleteReservationList(ArrayList<Reserve> completeReservationList) {
-        this.completeReservationList = completeReservationList;
+        instance.completeReservationList = completeReservationList;
+    }
+    
+    public void addCancelReserves(Reserve reserve){
+        instance.cancelReservationsList.add(reserve);
+    }
+    public void addReservesComplete(Reserve reserve){
+        instance.completeReservationList.add(reserve);
     }
     
 }

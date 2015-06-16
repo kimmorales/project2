@@ -6,6 +6,7 @@
 
 package Interface;
 
+import Logic.Customer;
 import Logic.Global;
 import Logic.HNHotelsCom;
 import Logic.Hotel;
@@ -19,13 +20,16 @@ import javax.swing.JTextPane;
  * @author Kimberly
  */
 public class CustomerWindow extends javax.swing.JFrame {
-
-    Global global;
-    public CustomerWindow() {
+    private final LoginWindow ancestor;
+    private final Global global;
+    private final Customer customer;
+    public CustomerWindow(LoginWindow ancestor, Customer customer) {
         initComponents();
         setLocationRelativeTo(null);
         setResizable(false);
         this.global = Global.getInstance();
+        this.ancestor = ancestor;
+        this.customer = customer;
         
         
     }
@@ -51,7 +55,7 @@ public class CustomerWindow extends javax.swing.JFrame {
         jTextFieldTypeLodgingHotel = new javax.swing.JTextField();
         jButtonCancel = new javax.swing.JButton();
         jButtonReserve = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jButtonEditProfile = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -120,9 +124,19 @@ public class CustomerWindow extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Edit profile");
+        jButtonEditProfile.setText("Edit profile");
+        jButtonEditProfile.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEditProfileActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("View my reserves");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,7 +154,7 @@ public class CustomerWindow extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton2))))
+                                .addComponent(jButtonEditProfile))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 2, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -163,7 +177,7 @@ public class CustomerWindow extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1))
-                    .addComponent(jButton2))
+                    .addComponent(jButtonEditProfile))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jComboBoxSearchEspecificHotel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -319,13 +333,15 @@ public class CustomerWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_jListHotelsSearchsMouseClicked
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-    
+        this.setVisible(false);
+        ancestor.setVisible(true);
+                
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReserveActionPerformed
         if(jListHotelsSearchs.getSelectedIndex() != -1){
             Hotel hotel = global.getHotelsList().get(jListHotelsSearchs.getSelectedIndex());
-            ReservesWindow reserve = new ReservesWindow(this,hotel);
+            ReservesWindow reserve = new ReservesWindow(this,hotel,this.customer);
             this.setEnabled(false);
             reserve.setVisible(true);
         }
@@ -335,19 +351,33 @@ public class CustomerWindow extends javax.swing.JFrame {
           
     }//GEN-LAST:event_jComboBoxSearchEspecificHotelMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        SingleReservesWindow singleReserves = new SingleReservesWindow(this,this.customer);
+        this.dispose();
+        singleReserves.setVisible(true);
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButtonEditProfileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEditProfileActionPerformed
+        EditProfileWindow editProfile = new EditProfileWindow(this.customer,this);
+        this.setVisible(false);
+        editProfile.setVisible(true);
+        
+    }//GEN-LAST:event_jButtonEditProfileActionPerformed
+
     public static void main(String args[]) {
   
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new CustomerWindow().setVisible(true);
+                new CustomerWindow(null,null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButtonCancel;
+    private javax.swing.JButton jButtonEditProfile;
     private javax.swing.JButton jButtonReserve;
     private javax.swing.JButton jButtonSearchHotels;
     private javax.swing.JComboBox jComboBoxSearchEspecificHotel;

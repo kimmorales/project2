@@ -49,5 +49,8 @@ public class Register {
     public void setRoomsSelectedList(ArrayList<Room> roomsSelectedList) {
         this.roomsSelectedList = roomsSelectedList;
     }
+    public void AddRoom(Room room){
+        this.roomsSelectedList.add(room);
+    }
     
 }

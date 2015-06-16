@@ -63,7 +63,27 @@ public class Customer extends User{
         this.reserveList = reserveList;
     }
     
+    public void deleteReserve(int i){
+                this.reserveList.remove(i);
+    }
     
-   
+    public Reserve searchReserve(String code){
+        for(Reserve temporalReserve : this.reserveList){
+            if(temporalReserve.getCode().equals(code));
+            return temporalReserve;
+        }
+        return null;
+    }
+    
+    public void addNewReserve(Reserve reserve){
+        this.reserveList.add(reserve);
+    }
+    
+    public void editProfile(String country, int phoneNumber, String currency){
+        this.country = country;
+        this.currency=currency;
+        super.setPhoneNumber(phoneNumber);
+    }
+    
     
 }

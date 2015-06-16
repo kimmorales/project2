@@ -4,15 +4,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Random;
 /**
  *
  * @author Kimberly
  */
 public class HNHotelsCom {
     private static final Global global = Global.getInstance();
-    /**
-     * @param args the command line arguments
-     */
     
     public static User searchUser(String ID){
         for(User temporalUser : global.getInstance().getUsersList()){
@@ -71,12 +69,8 @@ public class HNHotelsCom {
         }
         return null;
     }
-    /*
-    public static ArrayList<Hotel> topTenReserves(){
-        ArrayList<Hotel> result = new ArrayList();
-        
-    }
-    */
+   
+    
     public static void main(String[] args) {
         new LoginWindow().setVisible(true);
         Category category1 = new Category(123,345,"firstCategory");
@@ -93,10 +87,10 @@ public class HNHotelsCom {
         3445,9,8,"nothing",3,category2);
         Hotel hotel4 = new Hotel("HotelJavilos","javillos","CR",26,2015,"hotel",
         3456,10, 10,"nothing",1,category3);
-        global.getHotelsList().add(hotel4);
-        global.getHotelsList().add(hotel3);
-        global.getHotelsList().add(hotel2);
-        global.getHotelsList().add(hotel1);
+        global.addHotel(hotel4);
+        global.addHotel(hotel3);
+        global.addHotel(hotel2);
+        global.addHotel(hotel1);
         
         UserFactory factory = new UserFactory();
         User User1 = factory.addNewUser("1234","Kimberly", "Morales","Female","kim123", "kim123", 0, 12345, "CR","colon");
@@ -118,16 +112,32 @@ public class HNHotelsCom {
         kindRoom1.addRoom(room2);
         kindRoom2.addRoom(room3);
         Season summer = new Season("123a","summer",createDate(2, 7),createDate(5, 9));
-        Season winter = new Season("qw12","winter",createDate(3,9),createDate(3,01));
+        Season winter = new Season("qw12","winter",createDate(3,9),createDate(3,1));
         hotel1.addSeason(summer);
         hotel1.addSeason(winter);
+        hotel2.addSeason(summer);
         summer.addRoomSeason(kindRoom2);
         summer.addRoomSeason(kindRoom1);
         winter.addRoomSeason(kindRoom1);
-         
+        Register register1 = new Register("Kimberly",2, 0);
+        Register register2 = new Register("Yanle", 2, 4);
+        register1.AddRoom(room1);
+        register2.AddRoom(room3);
+        Reserve reserve1 = new Reserve("12qw334", createDate(2, 2),createDate(4,2),1, true);
+        Reserve reserve2 = new Reserve("asd12", createDate(2, 5),createDate(4, 5),2, true);
+        reserve1.addRegister(register1);
+        reserve2.addRegister(register2);
+        hotel1.addReservation(reserve2);
+        hotel1.addReservation(reserve1);
+        hotel3.addSeason(summer);
         
         summer.addPrice(price2);
         summer.addPrice(price1);
+        global.addReservesComplete(reserve1);
+        global.addReservesComplete(reserve2);
+        Customer customer = (Customer)User2;
+        customer.addNewReserve(reserve1);
+        customer.addNewReserve(reserve2);
        
     } 
     public static GregorianCalendar createDate(int day, int month){
@@ -139,11 +149,21 @@ public class HNHotelsCom {
         
     }
     
-    /*
-    public static boolean compareDate(GregorianCalendar dateStar, GregorianCalendar dateEnd){
-        
+    public static String generateIDReserve(Customer customer){
+        Random random = new Random();
+        String ID = "#";
+        String options = "ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789";
+        for(int i = 0;i < 10;i++){
+            ID += options.charAt((int)(random.nextDouble() * (options.length()) + 0));
+        }
+        for(Reserve temporalReserve : customer.getReserveList()){
+            if(temporalReserve.getCode().equals(ID)){
+                return generateIDReserve(customer);
+            }
+        }
+        return ID;
     }
-    */
     
     
+
 }

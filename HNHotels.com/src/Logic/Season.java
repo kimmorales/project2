@@ -15,6 +15,7 @@ public class Season {
     private GregorianCalendar endDate;
     private ArrayList<KindOfRoom> seasonRoomList;
     private ArrayList<Price> seasonPriceList;
+    private ArrayList<Reserve> reservationList;
 
     public Season(String code, String name, GregorianCalendar startDate, GregorianCalendar endDate) {
         this.code = code;
@@ -24,6 +25,7 @@ public class Season {
         this.endDate = endDate;
         this.seasonRoomList= new ArrayList();
         this.seasonPriceList = new ArrayList();
+        this.reservationList = new ArrayList();
     }
 
     public String getCode() {
@@ -89,4 +91,19 @@ public class Season {
         this.seasonPriceList.add(price);
     }
     
+    public void plusStaysForReserve(){
+        this.stays+=1;
+    }
+
+    public ArrayList<Reserve> getReservationList() {
+        return reservationList;
+    }
+
+    public void setReservationList(ArrayList<Reserve> reservationList) {
+        this.reservationList = reservationList;
+    }
+    
+    public void addReserve(Reserve reserve){
+        this.reservationList.add(reserve);
+    }
 }

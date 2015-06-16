@@ -6,6 +6,7 @@
 
 package Interface;
 
+import Logic.Customer;
 import Logic.Global;
 import Logic.HNHotelsCom;
 import Logic.Hotel;
@@ -16,6 +17,7 @@ import Logic.Room;
 import Logic.Season;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.Random;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
@@ -27,13 +29,15 @@ public class ReservesWindow extends javax.swing.JFrame {
     private final Global global;
     private final CustomerWindow ancestor;
     private final Hotel hotel;
-    public ReservesWindow(CustomerWindow ancestor,Hotel hotel) {
+    private final Customer customer;
+    public ReservesWindow(CustomerWindow ancestor,Hotel hotel,Customer customer) {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null);
         this.global = Global.getInstance();
         this.ancestor = ancestor;
         this.hotel = hotel;
+        this.customer = customer;
         
     }
 
@@ -72,8 +76,7 @@ public class ReservesWindow extends javax.swing.JFrame {
         jSpinnerChilndrenNumber = new javax.swing.JSpinner();
         jComboBoxTypeRoom = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jComboBoxSeasonForReserve = new javax.swing.JComboBox();
+        jButtonBack = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -147,11 +150,10 @@ public class ReservesWindow extends javax.swing.JFrame {
 
         jLabel13.setText("Select rooms:");
 
-        jLabel14.setText("Season:");
-
-        jComboBoxSeasonForReserve.addActionListener(new java.awt.event.ActionListener() {
+        jButtonBack.setText("Back");
+        jButtonBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxSeasonForReserveActionPerformed(evt);
+                jButtonBackActionPerformed(evt);
             }
         });
 
@@ -173,9 +175,11 @@ public class ReservesWindow extends javax.swing.JFrame {
                                     .addComponent(jLabel5)
                                     .addComponent(jLabel8)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(jSpinnerNumberAdults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jLabel11))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addComponent(jSpinnerNumberAdults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel11))
+                                            .addComponent(jButtonBack))
                                         .addGap(28, 28, 28)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(jLabel12)
@@ -204,9 +208,9 @@ public class ReservesWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSpinnerEntryDay, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jSpinnerNigthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jSpinnerNigthNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -214,8 +218,7 @@ public class ReservesWindow extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel7)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jSpinnerDepartureMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jComboBoxSeasonForReserve, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(jSpinnerDepartureMonth, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,9 +226,7 @@ public class ReservesWindow extends javax.swing.JFrame {
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel14)))
+                            .addComponent(jLabel2))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -233,16 +234,10 @@ public class ReservesWindow extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1))
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel14)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jComboBoxSeasonForReserve, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabelHotelSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
@@ -283,7 +278,9 @@ public class ReservesWindow extends javax.swing.JFrame {
                     .addComponent(jSpinnerNumberAdults, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jSpinnerChilndrenNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
-                .addComponent(jButtonReserve)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonReserve)
+                    .addComponent(jButtonBack))
                 .addContainerGap())
         );
 
@@ -297,23 +294,20 @@ public class ReservesWindow extends javax.swing.JFrame {
             }
         jListRoomSelected.setModel(model);
     }
-    private void chargeComboTypeRooms(Season season){
-        for(KindOfRoom temporalKindRoom: season.getSeasonRoomList()){
+    
+    private void chargeComboTypeRooms(Hotel hotel){
+        for(KindOfRoom temporalKindRoom: hotel.getKindOfRoomList()){
             jComboBoxTypeRoom.addItem(temporalKindRoom.getBedType());
         }
     }
-    private void chargeComboSeason(Hotel hotel){
-        for(Season temporalSeason : hotel.getSeasons()){
-            jComboBoxSeasonForReserve.addItem(temporalSeason.getCode());
-        }
-    }
+    
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
        jLabelHotelSelected.setText(this.hotel.getName());
        this.ancestor.setVisible(true);
        jTextFieldResponsiblePerson.setEnabled(false);
        jSpinnerChilndrenNumber.setEnabled(false);
        jSpinnerNumberAdults.setEnabled(false);
-       chargeComboSeason(this.hotel);
+        chargeComboTypeRooms(hotel);
        
     }//GEN-LAST:event_formWindowOpened
 
@@ -323,33 +317,68 @@ public class ReservesWindow extends javax.swing.JFrame {
         jSpinnerNumberAdults.setEnabled(true);
     }//GEN-LAST:event_jListRoomSelectedMouseClicked
 
+    public Season verifyDates(Hotel hotel, GregorianCalendar starDate, GregorianCalendar endDay){
+        for(Season temporalSeason : hotel.getSeasons()){
+            if(starDate.after(temporalSeason.getStartDate()) && endDay.before(temporalSeason.getEndDate())){
+                return temporalSeason;
+            }
+        }
+         return null;
+    }
+    
+    public boolean verifySpace(Hotel hotel, KindOfRoom kinRoom,Register register){
+        for(KindOfRoom temporalKindRoom : hotel.getKindOfRoomList()){
+            if(temporalKindRoom.getMaximumNumberGuests()< register.getNumberAdult()+register.getNumberChildren()){
+                return false;
+            }
+        }
+        return true;
+    }
+    public void setPriceReserve(Reserve reserve){
+        int nigths = reserve.getNumbersNights();
+        
+    }
+    
     private void jButtonReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonReserveActionPerformed
         if(((int)jSpinnerChilndrenNumber.getValue()==0)||((int)jSpinnerDepartureDay.getValue()==0)||
-        ((int)jSpinnerDepartureMonth.getValue()==0)||((int)jSpinnerEntryDay.getValue()==0)||((int)jSpinnerEntryMonth.getValue()==0)||
-        ((int)jSpinnerNigthNumber.getValue()==0)||((int)jSpinnerNumberAdults.getValue()==0)||(jTextFieldResponsiblePerson.getText().equals(""))){
+        ((int)jSpinnerDepartureMonth.getValue()==0)||((int)jSpinnerEntryDay.getValue()==0)||
+        ((int)jSpinnerEntryMonth.getValue()==0)||((int)jSpinnerNigthNumber.getValue()==0)||
+        ((int)jSpinnerNumberAdults.getValue()==0)||(jTextFieldResponsiblePerson.getText().equals(""))){
             JOptionPane.showMessageDialog(this,"Some data are required!");
         }
         else{
-            
             GregorianCalendar entryDate = HNHotelsCom.createDate((int)jSpinnerEntryDay.getValue(),(int)jSpinnerEntryMonth.getValue());
             GregorianCalendar departureDAte = HNHotelsCom.createDate((int)jSpinnerDepartureDay.getValue(),(int)jSpinnerDepartureMonth.getValue());
-            
-            Register register = new Register(jTextFieldResponsiblePerson.getText(),(int)jSpinnerNumberAdults.getValue(),(int)jSpinnerChilndrenNumber.getValue());
-            Reserve reserve = new Reserve(entryDate, departureDAte,(int)jSpinnerNigthNumber.getValue(),true);
-            reserve.getRegisterList().add(register);
-            Object object = jComboBoxTypeRoom.getSelectedItem();
-            KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
+            KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,jComboBoxTypeRoom.getSelectedItem().toString());
             int idRoom =Integer.parseInt( jListRoomSelected.getModel()
             .getElementAt(jListRoomSelected.getSelectedIndex()).toString());
-            
             Room newRoom = HNHotelsCom.searchRoom(hotel, room,idRoom);
-            register.getRoomsSelectedList().add(newRoom);
-            reserve.addRegister(register);
-            System.out.println("exito");
-            System.out.println(newRoom.toString());
+            if(newRoom!=null){
+                Season newSeason = verifyDates(hotel, entryDate, entryDate);
+                if(newSeason!=null){
+                    Register register = new Register(jTextFieldResponsiblePerson.getText(),(int)jSpinnerNumberAdults.getValue(),(int)jSpinnerChilndrenNumber.getValue());
+                    boolean space = verifySpace(hotel, room, register);
+                    if(space ==true){
+                        String code = HNHotelsCom.generateIDReserve(customer);
+                        Reserve reserve = new Reserve(code,entryDate, departureDAte,(int)jSpinnerNigthNumber.getValue(),true);
+                        register.AddRoom(newRoom);
+                        reserve.addRegister(register);
+                        hotel.addReservation(reserve);
+                        global.addReservesComplete(reserve);
+                        Season temporalSeason = HNHotelsCom.searchSeason(hotel, code);
+                        temporalSeason.plusStaysForReserve();
+                        newSeason.addReserve(reserve);
+                      
+                }
+                else
+                    JOptionPane.showMessageDialog(this,"The number of guest is max");
+            }
+            else{
+                JOptionPane.showMessageDialog(this,"The dates, should be others.");
+            }
+            }
+           
         }
-    
-        
       
     }//GEN-LAST:event_jButtonReserveActionPerformed
 
@@ -359,15 +388,14 @@ public class ReservesWindow extends javax.swing.JFrame {
 
     private void jComboBoxTypeRoomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTypeRoomActionPerformed
         Object object = jComboBoxTypeRoom.getSelectedItem();
-        KindOfRoom room = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
-        chargeAllRoomsOnJlist(room);
+        KindOfRoom kindRoom = HNHotelsCom.searchKindOfRoom(this.hotel,object.toString());
+        chargeAllRoomsOnJlist(kindRoom);
     }//GEN-LAST:event_jComboBoxTypeRoomActionPerformed
 
-    private void jComboBoxSeasonForReserveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxSeasonForReserveActionPerformed
-       Object obj= jComboBoxSeasonForReserve.getSelectedItem();
-       Season season = HNHotelsCom.searchSeason(hotel,obj.toString());
-        chargeComboTypeRooms(season);
-    }//GEN-LAST:event_jComboBoxSeasonForReserveActionPerformed
+    private void jButtonBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackActionPerformed
+        this.setVisible(false);
+        this.ancestor.setVisible(true);
+    }//GEN-LAST:event_jButtonBackActionPerformed
 
     /**
      * @param args the command line arguments
@@ -399,21 +427,20 @@ public class ReservesWindow extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ReservesWindow(null,null).setVisible(true);
+                new ReservesWindow(null,null,null).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButtonBack;
     private javax.swing.JButton jButtonReserve;
-    private javax.swing.JComboBox jComboBoxSeasonForReserve;
     private javax.swing.JComboBox jComboBoxTypeRoom;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

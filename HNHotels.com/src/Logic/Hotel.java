@@ -208,6 +208,7 @@ public class Hotel {
     public void setKindOfRoomList(ArrayList<KindOfRoom> kindOfRoomList) {
         this.kindOfRoomList = kindOfRoomList;
     }
+    
     public void addKindRoom(KindOfRoom newRoom){
       if(this.kindOfRoomList.size() > 0){
             //It is first.
@@ -229,6 +230,7 @@ public class Hotel {
         else
             this.kindOfRoomList.add(newRoom);
     }
+    
     public void addNewRoom(Room room){
         this.roomList.add(room);
     }
@@ -250,6 +252,12 @@ public class Hotel {
     
     public void addSeason(Season season){
         this.seasons.add(season);
+    }
+    public void addImage(ImageIcon image){
+        this.images.add(image);
+    }
+    public void addReservation(Reserve reserve){
+        this.reserveList.add(reserve);
     }
     
 }
